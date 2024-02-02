@@ -2,6 +2,7 @@
 #define UNTITLED_VECTOR_H
 
 #include <stdint.h>
+#include <stdbool.h>
 
 typedef struct vector {
     int *data; // указатель на элементы вектора
@@ -24,5 +25,28 @@ void shrinkToFit(vector *v);
 //освобождает память, выделенную вектору.
 void deleteVector(vector *v);
 
+//проверки на то, является ли вектор пустым
+bool isEmpty(vector *v);
+
+//проверки на то, является ли вектор полный
+bool isFull(vector *v);
+
+//возвращает i-ый элемент вектора v.
+int getVectorValue(vector *v, size_t i) ;
+
+//добавляет элемент x в конец вектора v.
+void pushBack(vector *v, int x);
+
+//удаляет последний элемент из вектора.
+void popBack(vector *v);
+
+//возвращает указатель на index-ый элемент вектора.
+int* atVector(vector *v, size_t index);
+
+//возвращает указатель на последний элемент вектора
+int* back(vector *v);
+
+//возвращает указатель на нулевой элемент вектора
+int* front(vector *v);
 
 #endif

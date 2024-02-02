@@ -179,6 +179,12 @@
 		<Unit filename="C:/Users/User/CLionProjects/untitled/libs/data_structures/bitset/bitset.h">
 			<Option target="data_structures"/>
 		</Unit>
+		<Unit filename="C:/Users/User/CLionProjects/untitled/libs/data_structures/vector/vector.c">
+			<Option target="data_structures"/>
+		</Unit>
+		<Unit filename="C:/Users/User/CLionProjects/untitled/libs/data_structures/vector/vector.h">
+			<Option target="data_structures"/>
+		</Unit>
 		<Unit filename="C:/Users/User/CLionProjects/untitled/main.c">
 			<Option target="untitled"/>
 		</Unit>

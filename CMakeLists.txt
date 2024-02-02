@@ -3,7 +3,8 @@ project(untitled C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(untitled main.c)
+add_executable(untitled main.c
+)
 
 add_subdirectory(libs)
 target_link_libraries(untitled data_structures)
