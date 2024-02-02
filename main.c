@@ -73,6 +73,7 @@ void test_atVector_notEmptyVector1() {
     assert(&(v.data[0]) == atVector(&v, 0));
 }
 
+//проверяте функцию atVector
 void test_atVector_notEmptyVector2() {
     vector v = createVector(0);
     pushBack(&v, 10);
@@ -82,6 +83,7 @@ void test_atVector_notEmptyVector2() {
     assert(v.data[1] == 11);
 }
 
+//проверяте функцию atVector
 void test_atVector_requestToLastElement1() {
     vector v = createVector(0);
     pushBack(&v, 10);
@@ -91,6 +93,7 @@ void test_atVector_requestToLastElement1() {
     assert(v.data[2] == 12);
 }
 
+//проверяте функцию atVector
 void test_atVector_requestToLastElement2() {
     vector v = createVector(0);
     pushBack(&v, 10);
@@ -98,6 +101,7 @@ void test_atVector_requestToLastElement2() {
     assert(v.data[0] == 10);
 }
 
+//проверяте функцию atVector
 void test_atVector_requestToLastElement3() {
     vector v = createVector(0);
     pushBack(&v, 10);
@@ -107,6 +111,7 @@ void test_atVector_requestToLastElement3() {
     assert(v.data[0] == 10);
 }
 
+//проверяет функцию back
 void test_back_oneElementInVector() {
     vector v = createVector(0);
     pushBack(&v, 10);
@@ -114,6 +119,7 @@ void test_back_oneElementInVector() {
     assert(v.data[0] == 10);
 }
 
+//прверяет функцию front
 void test_front_oneElementInVector() {
     vector v = createVector(0);
     pushBack(&v, 25);
