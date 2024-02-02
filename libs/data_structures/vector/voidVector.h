@@ -2,6 +2,7 @@
 #define UNTITLED_VOIDVECTOR_H
 
 #include <limits.h>
+
 typedef struct vectorVoid {
     void *data; // указатель на нулевой элемент вектора
     size_t size; // размер вектора
