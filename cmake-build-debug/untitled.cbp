@@ -185,7 +185,16 @@
 		<Unit filename="C:/Users/User/CLionProjects/untitled/libs/data_structures/vector/vector.h">
 			<Option target="data_structures"/>
 		</Unit>
+		<Unit filename="C:/Users/User/CLionProjects/untitled/libs/data_structures/vector/voidVector.c">
+			<Option target="data_structures"/>
+		</Unit>
+		<Unit filename="C:/Users/User/CLionProjects/untitled/libs/data_structures/vector/voidVector.h">
+			<Option target="data_structures"/>
+		</Unit>
 		<Unit filename="C:/Users/User/CLionProjects/untitled/main.c">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="C:/Users/User/CLionProjects/untitled/main_2.c">
 			<Option target="untitled"/>
 		</Unit>
 		<Unit filename="C:/Users/User/CLionProjects/untitled/CMakeLists.txt">

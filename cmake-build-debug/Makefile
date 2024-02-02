@@ -178,6 +178,30 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/main.c.s
 .PHONY : main.c.s
 
+main_2.obj: main_2.c.obj
+.PHONY : main_2.obj
+
+# target to build an object file
+main_2.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/main_2.c.obj
+.PHONY : main_2.c.obj
+
+main_2.i: main_2.c.i
+.PHONY : main_2.i
+
+# target to preprocess a source file
+main_2.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/main_2.c.i
+.PHONY : main_2.c.i
+
+main_2.s: main_2.c.s
+.PHONY : main_2.s
+
+# target to generate assembly for a file
+main_2.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/main_2.c.s
+.PHONY : main_2.c.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -192,6 +216,9 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... main_2.obj
+	@echo ... main_2.i
+	@echo ... main_2.s
 .PHONY : help
 
 
