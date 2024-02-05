@@ -69,13 +69,60 @@ void swapRows(matrix m, int i1, int i2) {
     swap_pointers(&m.values[i1], &m.values[i2]);
 }
 
+void swap(int *a, int *b) {
+    int t = *a;
+    *a = *b;
+    *b = t;
+}
+
 void swapColumns(matrix m, int j1, int j2) {
     assert(0 <= j1 && j1 < m.nCols);
     assert(0 <= j2 && j2 < m.nCols);
-    swap_pointers(&m.values[j1], &m.values[j2]);
+    swap(&m.values[j1], &m.values[j2]);
 }
 
+void insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int*, int)) {
+    int *criteriaValues = (int*)malloc(sizeof(int) * m.nRows);
+    for (int i = 0; i < m.nRows; i++)
+        criteriaValues[i] = criteria(m.values[i], m.nCols);
+    for (int i = 0; i < m.nRows; i++) {
+        int minIndex = i;
+        for (int j = i + 1; j < m.nRows; j++)
+            if (criteriaValues[j] < criteriaValues[minIndex])
+                minIndex = j;
+        if (i != minIndex) {
+            swap_pointers(&criteriaValues[i], &criteriaValues[minIndex]);
+            swapRows(m, i, minIndex);
+        }
+    }
+    free(criteriaValues);
+}
 
+void selectionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int*, int)) {
+    int *criteriaValues = (int*)malloc(sizeof(int) * m.nCols);
+    int *column = (int*)malloc(sizeof(int) * m.nRows);
+    for (int j = 0; j < m.nCols; j++) {
+        for (int i = 0; i < m.nRows; i++) {
+            column[i] = m.values[i][j];
+        }
+        criteriaValues[j] = criteria(column, m.nCols);
+    }
+
+    for (int i = 0; i < m.nCols; i++) {
+        int minIndex = i;
+        for (int j = i + 1; j < m.nCols; j++) {
+            if (criteriaValues[j] < criteriaValues[minIndex]) {
+                minIndex = j;
+            }
+        }
+        if (i != minIndex) {
+            swap(&criteriaValues[i], &criteriaValues[minIndex]);
+            swapColumns(m, i, minIndex);
+        }
+    }
+    free(column);
+    free(criteriaValues);
+}
 
 
 
