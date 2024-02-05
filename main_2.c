@@ -27,6 +27,7 @@ int main() {
             getVectorValueV(&v, i, &x);
             printf("%d ", x);
         }
+
         return 0;
-    }
+
 }

@@ -3,4 +3,5 @@ add_library(data_structures
         bitset/bitset-dm.c
         vector/vector.c
         vector/voidVector.c
+        matrix/matrix.c
 )
