@@ -129,19 +129,6 @@ untitled/fast:
 .PHONY : untitled/fast
 
 #=============================================================================
-# Target rules for targets named data_structures
-
-# Build rule for target.
-data_structures: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 data_structures
-.PHONY : data_structures
-
-# fast build rule for target.
-data_structures/fast:
-	$(MAKE) $(MAKESILENT) -f libs\data_structures\CMakeFiles\data_structures.dir\build.make libs/data_structures/CMakeFiles/data_structures.dir/build
-.PHONY : data_structures/fast
-
-#=============================================================================
 # Target rules for targets named algorithms
 
 # Build rule for target.
@@ -153,6 +140,19 @@ algorithms: cmake_check_build_system
 algorithms/fast:
 	$(MAKE) $(MAKESILENT) -f libs\algorithms\CMakeFiles\algorithms.dir\build.make libs/algorithms/CMakeFiles/algorithms.dir/build
 .PHONY : algorithms/fast
+
+#=============================================================================
+# Target rules for targets named data_structures
+
+# Build rule for target.
+data_structures: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 data_structures
+.PHONY : data_structures
+
+# fast build rule for target.
+data_structures/fast:
+	$(MAKE) $(MAKESILENT) -f libs\data_structures\CMakeFiles\data_structures.dir\build.make libs/data_structures/CMakeFiles/data_structures.dir/build
+.PHONY : data_structures/fast
 
 main.obj: main.c.obj
 .PHONY : main.obj
@@ -178,30 +178,6 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/main.c.s
 .PHONY : main.c.s
 
-main_2.obj: main_2.c.obj
-.PHONY : main_2.obj
-
-# target to build an object file
-main_2.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/main_2.c.obj
-.PHONY : main_2.c.obj
-
-main_2.i: main_2.c.i
-.PHONY : main_2.i
-
-# target to preprocess a source file
-main_2.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/main_2.c.i
-.PHONY : main_2.c.i
-
-main_2.s: main_2.c.s
-.PHONY : main_2.s
-
-# target to generate assembly for a file
-main_2.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/main_2.c.s
-.PHONY : main_2.c.s
-
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -216,9 +192,6 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
-	@echo ... main_2.obj
-	@echo ... main_2.i
-	@echo ... main_2.s
 .PHONY : help
 
 

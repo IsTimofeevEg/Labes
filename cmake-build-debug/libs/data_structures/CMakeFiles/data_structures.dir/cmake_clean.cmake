@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/data_structures.dir/bitset/bitset-dm.c.obj.d"
   "CMakeFiles/data_structures.dir/bitset/bitset.c.obj"
   "CMakeFiles/data_structures.dir/bitset/bitset.c.obj.d"
+  "CMakeFiles/data_structures.dir/matrix/matrix.c.obj"
+  "CMakeFiles/data_structures.dir/matrix/matrix.c.obj.d"
   "CMakeFiles/data_structures.dir/vector/vector.c.obj"
   "CMakeFiles/data_structures.dir/vector/vector.c.obj.d"
   "CMakeFiles/data_structures.dir/vector/voidVector.c.obj"

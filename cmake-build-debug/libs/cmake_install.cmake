@@ -39,11 +39,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/User/CLionProjects/untitled/cmake-build-debug/libs/data_structures/cmake_install.cmake")
+  include("C:/Users/User/CLionProjects/untitled/cmake-build-debug/libs/algorithms/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/User/CLionProjects/untitled/cmake-build-debug/libs/algorithms/cmake_install.cmake")
+  include("C:/Users/User/CLionProjects/untitled/cmake-build-debug/libs/data_structures/cmake_install.cmake")
 endif()
 
