@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "libs/data_structures/matrix/matrix.h"
+#include "matrix.h"
 #include <assert.h>
 #include <malloc.h>
 
