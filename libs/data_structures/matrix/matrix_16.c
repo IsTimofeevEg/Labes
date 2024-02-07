@@ -47,4 +47,10 @@ void fifthTask (matrix m) {
     transposeIfMatrixHasNotEqualSumOfRows(m);
 }
 
+//определяет, являются ли они взаимно обратными (𝐴 = 𝐵−1)
+bool sixthTack (matrix m1, matrix m2) {
+    return isMutuallyInverseMatrices(m1, m2);
+}
+
+
 

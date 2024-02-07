@@ -104,6 +104,9 @@ position getMaxValuePos(matrix m);
 //транспонирует матрицу, если среди сумм элементов строк матрицы нет равных
 void transposeIfMatrixHasNotEqualSumOfRows(matrix m);
 
+//определяет, являются ли они взаимно обратными (𝐴 = 𝐵−1)
+bool isMutuallyInverseMatrices(matrix A, matrix B);
+
 //проверяет элементы на уникальность
 bool isUnique(long long *a, int n);
 
