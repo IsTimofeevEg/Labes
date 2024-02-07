@@ -29,6 +29,8 @@ matrix fourthTask (matrix m) {
     return res;
 }
 
+
+
 int main() {
     // Пример использования структуры для матрицы 3x3
     matrix mat;
@@ -44,15 +46,15 @@ int main() {
     mat.values[0][0] = 1;
     mat.values[0][1] = 2;
     mat.values[0][2] = 3;
-    mat.values[1][0] = 4;
-    mat.values[1][1] = 5;
-    mat.values[1][2] = 6;
+    mat.values[1][0] = 3;
+    mat.values[1][1] = 3;
+    mat.values[1][2] = 0;
     mat.values[2][0] = 7;
     mat.values[2][1] = 8;
     mat.values[2][2] = 9;
 
-    matrix m = fourthTask(mat);
-    outputMatrix(m);
+    transposeIfMatrixHasNotEqualSumOfRows(mat);
+    outputMatrix(mat);
 
     return 0;
 }

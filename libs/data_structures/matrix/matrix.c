@@ -99,7 +99,7 @@ void swapColumns(matrix m, int j1, int j2) {
 }
 
 // функция-критерий для сравнения строк по сумме элементов
-int getSum(int* a, int nCols) {
+long long getSum(int* a, int nCols) {
     int sum = 0;
     for (int i = 0; i < nCols; i++) {
         sum += a[i];
@@ -300,6 +300,37 @@ matrix getSquareOfMatrixIfSymmetric(matrix m) {
         matrix r = mulMatrices(m, m);
         return r;
     }
+}
+
+//транспонирует матрицу, если среди сумм элементов строк матрицы нет равных
+void transposeIfMatrixHasNotEqualSumOfRows(matrix m) {
+    long long sum_rows[m.nRows];
+    for (int i = 0; i < m.nRows; i++) {
+        sum_rows[i] = getSum(m.values[i], m.nCols);
+    }
+    if (isUnique(&sum_rows, m.nRows)){
+        for (int i = 0; i < m.nRows; i++) {
+            long long sum = getSum(m.values[i], m.nCols);
+            for (int j = i + 1; j < m.nRows; j++) {
+                if (sum != getSum(m.values[j], m.nCols)) {
+                    transposeSquareMatrix(&m);
+                    return;
+                }
+            }
+        }
+    }
+}
+
+//проверяет элементы на уникальность
+bool isUnique(long long *a, int n) {
+    for (int i = 0; i < n; ++i) {
+        for (int j = i + 1; j < n; ++j) {
+            if (a[i] == a[j]) {
+                return false; // Найден повторяющийся элемент
+            }
+        }
+    }
+    return true; // Все элементы уникальны
 }
 
 //транспонирует квадратную

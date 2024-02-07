@@ -16,7 +16,7 @@ typedef struct position {
 } position;
 
 // функция-критерий для сравнения строк по сумме элементов
-int getSum(int *a, int nCols);
+long long getSum(int *a, int nCols);
 
 // функция-критерий для сравнения строк по минимальному элементу
 int getMin(int const * a, int n);
@@ -100,6 +100,12 @@ position getMinValuePos(matrix m);
 
 //возвращает позицию максимального элемента матрицы m.
 position getMaxValuePos(matrix m);
+
+//транспонирует матрицу, если среди сумм элементов строк матрицы нет равных
+void transposeIfMatrixHasNotEqualSumOfRows(matrix m);
+
+//проверяет элементы на уникальность
+bool isUnique(long long *a, int n);
 
 // возвращает матрицу размера nRows на nCols, построенную из элементов массива a
 matrix createMatrixFromArray(const int *a, size_t nRows, size_t nCols);
