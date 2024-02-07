@@ -108,6 +108,16 @@ int getSum(int* a, int nCols) {
     return sum;
 }
 
+// функция-критерий для сравнения строк по минимальному элементу
+int getMin(int const * a, int n) {
+    assert(n > 0);
+    int min = a[0];
+    for (int i = 1; i < n; i++)
+        if (a[i] < min)
+            min = a[i];
+    return min;
+}
+
 // функция-критерий для сравнения строк по максимальному элементу
 int getMax(int* a, int n) {
     assert(n > 0);
@@ -177,7 +187,28 @@ void selectionSortColsMatrixByColCriteria(matrix a, int (*criteria)(int*, int)) 
     free(criteriaValues);
 }
 
-
+//упорядочивает столбцы матрицы по неубыванию минимальных элементов столбцов
+void sortColsByMinElemnt(matrix a, int (*criteria)(int const*, int)) {
+    int *criteriaValues = (int*)malloc(sizeof(int) * a.nCols);
+    int *column = (int*)malloc(sizeof(int) * a.nRows);
+    for (int j = 0; j < a.nCols; j++) {
+        for (int i = 0; i < a.nRows; i++)
+            column[i] = a.values[i][j];
+        criteriaValues[j] = criteria(column, a.nCols);
+    }
+    for (int i = 0; i < a.nCols; i++) {
+        int minIndex = i;
+        for (int j = i + 1; j < a.nCols; j++)
+            if (criteriaValues[j] < criteriaValues[minIndex])
+                minIndex = j;
+        if (i != minIndex) {
+            swap(&criteriaValues[i], &criteriaValues[minIndex]);
+            swapColumns(a, i, minIndex);
+        }
+    }
+    free(column);
+    free(criteriaValues);
+}
 
 //возвращает значение ’истина’, если
 //матрица m является квадратной, ложь – в противном случае

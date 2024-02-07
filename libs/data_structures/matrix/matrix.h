@@ -18,6 +18,9 @@ typedef struct position {
 // функция-критерий для сравнения строк по сумме элементов
 int getSum(int *a, int nCols);
 
+// функция-критерий для сравнения строк по минимальному элементу
+int getMin(int const * a, int n);
+
 // функция-критерий для сравнения строк по максимальному элементу
 int getMax(int* a, int n);
 
@@ -61,6 +64,9 @@ void sortRowsByMaxElement(matrix a) ;
 //выполняет сортировку выбором столбцов
 //матрицы m по неубыванию значения функции criteria применяемой для столбцов
 void selectionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int*, int));
+
+//упорядочивает столбцы матрицы по неубыванию минимальных элементов столбцов
+void sortColsByMinElemnt(matrix a, int (*criteria)(int const*, int));
 
 //возвращает значение ’истина’, если
 //матрица m является квадратной, ложь – в противном случае
