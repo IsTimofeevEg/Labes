@@ -35,3 +35,12 @@ void secondTask(matrix m){
 void thirdTask(matrix a){
     sortColsByMinElemnt(a, getMin);
 }
+
+//Если данная квадратная матрица 𝐴 симметрична, то заменить 𝐴 ее квадратом (𝐴2).
+matrix fourthTask (matrix m) {
+    matrix res = getSquareOfMatrixIfSymmetric(m);
+    return res;
+}
+
+
+

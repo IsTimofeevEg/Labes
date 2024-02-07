@@ -248,6 +248,35 @@ bool isEMatrix(matrix *m) {
     return true;
 }
 
+//умножает матрицы
+matrix mulMatrices(matrix m1, matrix m2) {
+    if (m1.nCols != m2.nRows) {
+        // Матрицы нельзя перемножить
+        matrix result = {NULL, 0, 0};
+        return result;
+    }
+
+    matrix result;
+    result.nRows = m1.nRows;
+    result.nCols = m2.nCols;
+
+    result.values = (int **)malloc(result.nRows * sizeof(int *));
+    for (int i = 0; i < result.nRows; i++) {
+        result.values[i] = (int *)malloc(result.nCols * sizeof(int));
+    }
+
+    for (int i = 0; i < result.nRows; i++) {
+        for (int j = 0; j < result.nCols; j++) {
+            result.values[i][j] = 0;
+            for (int k = 0; k < m1.nCols; k++) {
+                result.values[i][j] += m1.values[i][k] * m2.values[k][j];
+            }
+        }
+    }
+
+    return result;
+}
+
 //возвращает значение ’истина’, если матрица m является симметричной, ложь – в противном случае
 bool isSymmetricMatrix(matrix *m) {
     if (m->nRows != m->nCols) {
@@ -263,6 +292,14 @@ bool isSymmetricMatrix(matrix *m) {
     }
 
     return true;
+}
+
+//Если матрица симметрична, получите квадрат матрицы
+matrix getSquareOfMatrixIfSymmetric(matrix m) {
+    if (!isSymmetricMatrix(&m)) {
+        matrix r = mulMatrices(m, m);
+        return r;
+    }
 }
 
 //транспонирует квадратную

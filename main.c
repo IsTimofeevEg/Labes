@@ -24,15 +24,21 @@ void firstTask(matrix *m) {
     swapRows(m, maxRowIndex, minRowIndex);
 }
 
+matrix fourthTask (matrix m) {
+    matrix res = getSquareOfMatrixIfSymmetric(m);
+    return res;
+}
+
 int main() {
     // Пример использования структуры для матрицы 3x3
     matrix mat;
     mat.nRows = 3;
     mat.nCols = 3;
-    mat.values = (int **)malloc(mat.nRows * sizeof(int *));
+    mat.values = (int **) malloc(mat.nRows * sizeof(int *));
     for (int i = 0; i < mat.nRows; i++) {
-        mat.values[i] = (int *)malloc(mat.nCols * sizeof(int));
+        mat.values[i] = (int *) malloc(mat.nCols * sizeof(int));
     }
+
 
     // Заполнение матрицы значениями
     mat.values[0][0] = 1;
@@ -45,15 +51,8 @@ int main() {
     mat.values[2][1] = 8;
     mat.values[2][2] = 9;
 
-    // Вызов функции для замены строк с максимальным и минимальным элементом
-    firstTask(&mat);
-    outputMatrix(mat);
-
-    // Освобождение памяти
-    for (int i = 0; i < mat.nRows; i++) {
-        free(mat.values[i]);
-    }
-    free(mat.values);
+    matrix m = fourthTask(mat);
+    outputMatrix(m);
 
     return 0;
 }
