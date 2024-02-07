@@ -74,10 +74,14 @@ void swap_pointers(int **a, int **b) {
 }
 
 // обмен строк с порядковыми номерами i1 и i2 в матрице m.
-void swapRows(matrix m, int i1, int i2) {
-    assert(0 <= i1 && i1 < m.nRows);
-    assert(0 <= i2 && i2 < m.nRows);
-    swap_pointers(&m.values[i1], &m.values[i2]);
+void swapRows(matrix* m, int i1, int i2) {
+    if (i1 < 0 || i1 >= m->nRows || i2 < 0 || i2 >= m->nRows) {
+        return;
+    }
+
+    int *temp = m->values[i1];
+    m->values[i1] = m->values[i2];
+    m->values[i2] = temp;
 }
 
 void swap(int *a, int *b) {
@@ -127,7 +131,7 @@ void insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int*, int)) 
                 minIndex = j;
         if (i != minIndex) {
             swap_pointers(&criteriaValues[i], &criteriaValues[minIndex]);
-            swapRows(m, i, minIndex);
+            swapRows(&m, i, minIndex);
         }
     }
     free(criteriaValues);

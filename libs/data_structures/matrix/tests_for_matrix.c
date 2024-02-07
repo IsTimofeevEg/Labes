@@ -130,7 +130,7 @@ void test_swapRows() {
                                               7,8,5,
                                               5,3,6},
                                      3,3);
-    swapRows(a, 0, 2);
+    swapRows(&a, 0, 2);
     for (int i = 0; i < a.nRows; i++) {
         for (int j = 0; j < a.nCols; j++) {
             assert(a.values[i][j] == b.values[i][j]);
