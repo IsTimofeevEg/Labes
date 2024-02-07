@@ -24,3 +24,10 @@ void firstTask(matrix *m) {
     swapRows(m, maxRowIndex, minRowIndex);
 }
 
+//сортирует строки матрицы по неубыванию наибольших элементов строк
+void secondTask(matrix m){
+    for (int i = 0; i < m.nRows; i++) {
+        sortRowsByMaxElement(m);
+    }
+}
+

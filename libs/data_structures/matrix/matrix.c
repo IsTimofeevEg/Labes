@@ -136,7 +136,23 @@ void insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int*, int)) 
     }
     free(criteriaValues);
 }
-
+//сортирует строки по неубывнию наибольших элементов строк
+void sortRowsByMaxElement(matrix a) {
+    int *max = (int*)malloc(sizeof(int) * a.nRows);
+    for (int i = 0; i < a.nRows; i++)
+        max[i] = getMax(a.values[i], a.nCols);
+    for (int i = 0; i < a.nRows; i++) {
+        int minIndex = i;
+        for (int j = i + 1; j < a.nRows; j++)
+            if (max[j] < max[minIndex])
+                minIndex = j;
+        if (i != minIndex) {
+            swap(&max[i], &max[minIndex]);
+            swapRows(&a, i, minIndex);
+        }
+    }
+    free(max);
+}
 //выполняет сортировку выбором столбцов
 //матрицы m по неубыванию значения функции criteria применяемой для столбцов
 void selectionSortColsMatrixByColCriteria(matrix a, int (*criteria)(int*, int)) {
