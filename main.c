@@ -35,9 +35,9 @@ matrix fourthTask (matrix m) {
 
 int main() {
     int a[] = {10, 7, 5, 6, 3, 11, 8, 9, 4, 1, 12,2};
-    matrix m = createMatrixFromArray(&a, 3, 4);
-    int res = getMinInArea(m);
-    printf("%d", res);
+    matrix m = createMatrixFromArray(&a, 6, 2);
+    sortByDistances(m);
+    outputMatrix(m);
 
     return 0;
 }

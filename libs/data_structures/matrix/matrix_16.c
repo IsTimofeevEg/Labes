@@ -63,5 +63,8 @@ int eighthTask (matrix m) {
     getMinInArea(m);
 }
 
+void ninthTask (matrix m) {
+    sortByDistances(m);
+}
 
 

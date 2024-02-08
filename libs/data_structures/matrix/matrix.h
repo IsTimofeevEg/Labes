@@ -115,6 +115,12 @@ bool isUnique(long long *a, int n);
 
 int getMinInArea(matrix m) ;
 
+float getDistance(int *a, int n);
+
+void insertionSortRowsMatrixByRowCriteriaF(matrix m, float (*criteria)(int *, int));
+
+void sortByDistances(matrix m);
+
 // возвращает матрицу размера nRows на nCols, построенную из элементов массива a
 matrix createMatrixFromArray(const int *a, size_t nRows, size_t nCols);
 
