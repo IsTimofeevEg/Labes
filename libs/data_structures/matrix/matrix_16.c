@@ -58,7 +58,10 @@ long long seventhTask (matrix m) {
     return res;
 }
 
-
+//находит минимальный элемент матрицы в выделенной области.
+int eighthTask (matrix m) {
+    getMinInArea(m);
+}
 
 
 

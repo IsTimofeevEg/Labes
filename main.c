@@ -32,10 +32,11 @@ matrix fourthTask (matrix m) {
 
 
 
+
 int main() {
-    int a[] = {3, 2, 5, 4, 1, 3, 6, 3, 3, 2, 1, 2};
+    int a[] = {10, 7, 5, 6, 3, 11, 8, 9, 4, 1, 12,2};
     matrix m = createMatrixFromArray(&a, 3, 4);
-    long long res = findSumOfMaxesOfPseudoDiagonal(m);
+    int res = getMinInArea(m);
     printf("%d", res);
 
     return 0;
