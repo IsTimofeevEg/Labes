@@ -79,4 +79,8 @@ int eleventhTask (matrix m) {
     return getNSpecialElement(m);
 }
 
+// Функция для замены предпоследней строки матрицы
+void twelfthTask (matrix m) {
+    swapPenultimateRow(m);
+}
 

@@ -584,3 +584,31 @@ int getNSpecialElement(matrix m) {
     }
     return count;
 }
+
+// Функция getLeftMin принимает на вход матрицу m и возвращает позицию элемента с наименьшим значением в этой матрице
+position getLeftMin(matrix m) {
+    position minPos;
+    minPos.rowIndex = 0;
+    minPos.colIndex = 0;
+    int minValue = m.values[0][0];
+    for (int i = 0; i < m.nRows; i++) {
+        for (int j = 0; j < m.nCols; j++) {
+            if (m.values[i][j] < minValue) {
+                minValue = m.values[i][j];
+                minPos.rowIndex = i;
+                minPos.colIndex = j;
+            }
+        }
+    }
+    return minPos;
+}
+
+// Функция для замены предпоследней строки матрицы
+void swapPenultimateRow(matrix m) {
+    position minPos = getLeftMin(m);
+    int element = m.values[m.nRows - (m.nRows - 1)][minPos.colIndex];
+    for (int i = 0; i < m.nCols; i++) {
+        m.values[m.nRows - 2][i] = m.values[i][minPos.colIndex];
+    }
+    m.values[m.nRows - 2][1] = element;
+}

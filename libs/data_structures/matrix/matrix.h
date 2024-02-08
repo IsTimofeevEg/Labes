@@ -146,5 +146,11 @@ int countNUnique(long long *a, int n);
 //элемент "особым" , если он больше суммы остальных элементов своего столбца.
 int getNSpecialElement(matrix m) ;
 
+// Функция getLeftMin принимает на вход матрицу m и возвращает позицию элемента с наименьшим значением в этой матрице
+position getLeftMin(matrix m);
+
+// Функция для замены предпоследней строки матрицы
+void swapPenultimateRow(matrix m);
+
 #endif
 
