@@ -74,3 +74,9 @@
 2	124	7290976397768146	libs/data_structures/CMakeFiles/data_structures.dir/matrix/matrix.c.obj	73532d845f9766e5
 125	188	7290976398425946	libs/data_structures/libdata_structures.a	fe05973c140b364b
 188	267	7290976399173447	untitled.exe	63decf4e4c482170
+2	88	7290987609763242	CMakeFiles/untitled.dir/main.c.obj	7b280a1c0d9089ce
+19	106	7290987609937730	libs/data_structures/CMakeFiles/data_structures.dir/matrix/matrix_16.c.obj	ff00d59cbf50a195
+14	126	7290987610137069	libs/data_structures/CMakeFiles/data_structures.dir/matrix/tests_for_matrix.c.obj	ff9416db5d2b2015
+9	140	7290987610266681	libs/data_structures/CMakeFiles/data_structures.dir/matrix/matrix.c.obj	73532d845f9766e5
+140	207	7290987610964297	libs/data_structures/libdata_structures.a	fe05973c140b364b
+207	298	7290987611831394	untitled.exe	63decf4e4c482170

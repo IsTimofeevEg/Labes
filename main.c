@@ -28,15 +28,29 @@ matrix fourthTask (matrix m) {
     matrix res = getSquareOfMatrixIfSymmetric(m);
     return res;
 }
-
+int getNSpecialElement(matrix m) {
+    int count = 0;
+    for (int j = 0; j < m.nCols; j++) {
+        int sum = 0;
+        for (int i = 0; i < m.nRows; i++) {
+            sum += m.values[i][j];
+        }
+        for (int i = 0; i < m.nRows; i++) {
+            if (m.values[i][j] > (sum - m.values[i][j])) {
+                count++;
+            }
+        }
+    }
+    return count;
+}
 
 
 
 
 int main() {
-    int a[] = {7, 1, 2, 7, 5, 4, 4, 3, 1, 6, 8, 0};
-    matrix m = createMatrixFromArray(&a, 6, 2);
-    int res = countEqClassesByRowsSum(m);
+    int a[] = {3, 5, 5, 4, 2, 3, 6, 7, 12, 2, 1, 2};
+    matrix m = createMatrixFromArray(&a, 3, 4);
+    int res = getNSpecialElement(m);
     printf("%d", res);
 
     return 0;
