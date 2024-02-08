@@ -95,3 +95,9 @@ void fourteenthTask (matrix *ms, int nMatrix) {
     printMatrixWithMaxZeroRows(ms, nMatrix);
 }
 
+//Выводит матрицы с наименьшей нормой.
+void fiveteenthTask (matrix *ms, int nMatrix) {
+    printMatricesWithMinNorm(ms, nMatrix);
+}
+
+

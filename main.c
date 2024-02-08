@@ -29,43 +29,35 @@ matrix fourthTask (matrix m) {
     return res;
 }
 
-//Счетчик значений
-int countValues(const int *a, int n, int value) {
-    int count = 0;
-    for (int i = 0; i < n; i++) {
-        if (a[i] == value) {
-            count++;
-        }
-    }
-    return count;
-}
-
-//Cчетчик нолевых строк
-int countZeroRows(matrix m) {
-    int count = 0;
+//Находит макс. норму матрицы
+int getMaxNorm(matrix m) {
+    int maxNorm = 0;
     for (int i = 0; i < m.nRows; i++) {
-        int zeroCount = countValues(m.values[i], m.nCols, 0);
-        if (zeroCount == m.nCols) {
-            count++;
+        for (int j = 0; j < m.nCols; j++) {
+            int absValue = abs(m.values[i][j]);
+            if (absValue > maxNorm) {
+                maxNorm = absValue;
+            }
         }
     }
-    return count;
+    return maxNorm;
 }
 
-//Выводит матрицы, имеющие наибольшее
-//число нулевых строк
-void printMatrixWithMaxZeroRows(matrix *ms, int nMatrix) {
-    int maxZeroRows = 0;
-    for (int i = 0; i < nMatrix; i++) {
-        int zeroRows = countZeroRows(ms[i]);
-        if (zeroRows > maxZeroRows) {
-            maxZeroRows = zeroRows;
+//Выводит матрицы с наименьшей нормой.
+void printMatricesWithMinNorm(matrix *ms, int nMatrix) {
+    int minNorm = getMaxNorm(ms[0]);
+    for (int i = 1; i < nMatrix; i++) {
+        int norm = getMaxNorm(ms[i]);
+        if (norm < minNorm) {
+            minNorm = norm;
         }
     }
+
     for (int i = 0; i < nMatrix; i++) {
-        if (countZeroRows(ms[i]) == maxZeroRows)
+        if (getMaxNorm(ms[i]) == minNorm) {
             outputMatrix(ms[i]);
             printf("\n");
+        }
     }
 }
 
@@ -73,10 +65,10 @@ void printMatrixWithMaxZeroRows(matrix *ms, int nMatrix) {
 
 
 int main() {
-    int a[] = {0,1,1,0,0,0,1,1,2,1,1,1,0,0,0,0,4,7,0,0,0,1,0,0,0,1,0,2,0,3};
-    matrix *ms = createArrayOfMatrixFromArray(&a, 5, 3, 2);
+    int a[] = {9, 1, 2,3,1,1,1,1,2,2,2,2};
+    matrix *ms = createArrayOfMatrixFromArray(&a, 3, 2, 2);
 
-    printMatrixWithMaxZeroRows(ms,  5);
+    printMatricesWithMinNorm(ms, 3);
 
 
     return 0;
