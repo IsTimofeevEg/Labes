@@ -29,49 +29,55 @@ matrix fourthTask (matrix m) {
     return res;
 }
 
-//Возвращает - "истина", если матрица отсортирована, иначе - "ложь"
-bool isNonDescendingSorted(int *a, int n) {
-    for (int i = 1; i < n; i++) {
-        if (a[i] < a[i-1]) {
-            return false;
-        }
-    }
-    return true;
-}
-
-//Если хотя бы одна
-//строка не является неубывающей, функция возвращает false,
-//иначе возвращает true.
-bool hasAllNonDescendingRows(matrix m) {
-    for (int i = 0; i < m.nRows; i++) {
-        if (!isNonDescendingSorted(m.values[i], m.nCols)) {
-            return false;
-        }
-    }
-    return true;
-}
-
-//Определяет число матриц, строки которых упорядочены по неубыванию элементов
-int countNonDescendingRowsMatrices(matrix *ms, int nMatrix) {
+//Счетчик значений
+int countValues(const int *a, int n, int value) {
     int count = 0;
-    for (int i = 0; i < nMatrix; i++) {
-        if (hasAllNonDescendingRows(ms[i])) {
+    for (int i = 0; i < n; i++) {
+        if (a[i] == value) {
             count++;
         }
     }
-
     return count;
+}
+
+//Cчетчик нолевых строк
+int countZeroRows(matrix m) {
+    int count = 0;
+    for (int i = 0; i < m.nRows; i++) {
+        int zeroCount = countValues(m.values[i], m.nCols, 0);
+        if (zeroCount == m.nCols) {
+            count++;
+        }
+    }
+    return count;
+}
+
+//Выводит матрицы, имеющие наибольшее
+//число нулевых строк
+void printMatrixWithMaxZeroRows(matrix *ms, int nMatrix) {
+    int maxZeroRows = 0;
+    for (int i = 0; i < nMatrix; i++) {
+        int zeroRows = countZeroRows(ms[i]);
+        if (zeroRows > maxZeroRows) {
+            maxZeroRows = zeroRows;
+        }
+    }
+    for (int i = 0; i < nMatrix; i++) {
+        if (countZeroRows(ms[i]) == maxZeroRows)
+            outputMatrix(ms[i]);
+            printf("\n");
+    }
 }
 
 
 
 
 int main() {
-    int a[] = {7, 1, 1, 1, 1,6,2,2,5,4,2,3,1,3,7,9};
-    matrix *ms = createArrayOfMatrixFromArray(&a, 4, 2, 2);
+    int a[] = {0,1,1,0,0,0,1,1,2,1,1,1,0,0,0,0,4,7,0,0,0,1,0,0,0,1,0,2,0,3};
+    matrix *ms = createArrayOfMatrixFromArray(&a, 5, 3, 2);
 
-    outputMatrices(ms, 4);
-    int res = countNonDescendingRowsMatrices(ms, 4);
-    printf("%d", res);
+    printMatrixWithMaxZeroRows(ms,  5);
+
+
     return 0;
 }
