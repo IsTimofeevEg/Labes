@@ -371,6 +371,36 @@ bool isMutuallyInverseMatrices(matrix A, matrix B) {
     return true; // Матрицы взаимно обратны
 }
 
+int max (int a, int b) {
+    if (a < b)
+        return b;
+    else
+        return a;
+}
+
+//Находит сумму максимальных элементов всех псевдодиагоналей данной матрицы.
+long long findSumOfMaxesOfPseudoDiagonal(matrix m) {
+    long long sum = 0;
+    for (int i = 0; i < m.nRows; i++) {
+        m.values[i][i] = 0;
+    }
+
+    for (int k = 0; k < m.nCols + m.nRows - 1; k++) {
+        int maxInDiagonal = INT_MIN;
+        int col = max(0, k - m.nRows + 1);
+        int row = max(0, m.nRows - k - 1);
+
+        while (col < m.nCols && row < m.nRows) {
+            maxInDiagonal = max(maxInDiagonal, m.values[row][col]);
+            col++;
+            row++;
+        }
+        sum += maxInDiagonal;
+    }
+
+    return sum;
+}
+
 //транспонирует квадратную
 //матрицу m.
 void transposeSquareMatrix(matrix *m) {

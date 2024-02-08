@@ -107,6 +107,9 @@ void transposeIfMatrixHasNotEqualSumOfRows(matrix m);
 //определяет, являются ли они взаимно обратными (𝐴 = 𝐵−1)
 bool isMutuallyInverseMatrices(matrix A, matrix B);
 
+//Находит сумму максимальных элементов всех псевдодиагоналей данной матрицы.
+long long findSumOfMaxesOfPseudoDiagonal(matrix m);
+
 //проверяет элементы на уникальность
 bool isUnique(long long *a, int n);
 
