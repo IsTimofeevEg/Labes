@@ -52,7 +52,7 @@ bool sixthTack (matrix m1, matrix m2) {
     return isMutuallyInverseMatrices(m1, m2);
 }
 
-////Находит сумму максимальных элементов всех псевдодиагоналей данной матрицы.
+//Находит сумму максимальных элементов всех псевдодиагоналей данной матрицы.
 long long seventhTask (matrix m) {
     long long res = findSumOfMaxesOfPseudoDiagonal(m);
     return res;
@@ -63,8 +63,14 @@ int eighthTask (matrix m) {
     getMinInArea(m);
 }
 
+//сортирует по расстоянию до начала координат
 void ninthTask (matrix m) {
     sortByDistances(m);
+}
+
+// определяет количество классов эквивалентных
+int tenthTask (matrix m) {
+    countEqClassesByRowsSum(m);
 }
 
 

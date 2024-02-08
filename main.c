@@ -34,10 +34,10 @@ matrix fourthTask (matrix m) {
 
 
 int main() {
-    int a[] = {10, 7, 5, 6, 3, 11, 8, 9, 4, 1, 12,2};
+    int a[] = {7, 1, 2, 7, 5, 4, 4, 3, 1, 6, 8, 0};
     matrix m = createMatrixFromArray(&a, 6, 2);
-    sortByDistances(m);
-    outputMatrix(m);
+    int res = countEqClassesByRowsSum(m);
+    printf("%d", res);
 
     return 0;
 }

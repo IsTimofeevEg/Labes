@@ -121,6 +121,12 @@ void insertionSortRowsMatrixByRowCriteriaF(matrix m, float (*criteria)(int *, in
 
 void sortByDistances(matrix m);
 
+int cmp_long_long(const void *pa, const void *pb);
+
+int countNUnique(long long *a, int n);
+
+int countEqClassesByRowsSum(matrix m);
+
 // возвращает матрицу размера nRows на nCols, построенную из элементов массива a
 matrix createMatrixFromArray(const int *a, size_t nRows, size_t nCols);
 
