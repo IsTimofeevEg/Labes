@@ -113,3 +113,8 @@ int sixteenthTask (matrix m) {
 int seventeenthTask (matrix m, int *b) {
     return getVectorIndexWithMaxAngle(m, b);
 }
+
+//находит минимальный элемент в выделенной области
+int eighteenthTask (matrix m) {
+    return getMinInArea(m);
+}

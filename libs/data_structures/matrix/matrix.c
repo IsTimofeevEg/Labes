@@ -442,6 +442,8 @@ int max(int a, int b){
     return a > b ? a : b;
 }
 
+
+
 //находит сумму максимальных элементов всех псевдодиагоналей
 long long findSumOfMaxesOfPseudoDiagonal(matrix m) {
     long long sum = 0;
@@ -465,46 +467,40 @@ long long findSumOfMaxesOfPseudoDiagonal(matrix m) {
     return sum;
 }
 
+int min(int a, int b) {
+    return a < b ? a : b;
+}
+
 //находит минимальный элемент в выделенной области
 int getMinInArea(matrix m){
-    int u = 0;
-    int min[u];
-    int start_rows, start_cols, end_rows, end_cols;
-    int maximum = INT_MIN;
-    int max_rows, max_cols;
-    for (int i = 0; i < m.nRows; i++) {
-        for (int j = 0; j < m.nCols; j++) {
-            maximum = max(m.values[i][j], maximum);
-            max_rows = i;
-            max_cols = j;
-            if (i == 0) {
-                return m.values[i][j];
-            } else {
-                start_rows = 0;
-                start_cols = i - j;
-                end_rows = i;
-                if (j == m.nCols) {
-                    end_cols = j;
-                } else {
-                    end_cols = j + (m.nCols - j);
-                }
+    int maxRow = 0, maxCol = 0;
+    int i, j;
+
+    // Находим индексы максимального элемента
+    for (i = 0; i < m.nRows; i++) {
+        for (j = 0; j < m.nCols; j++) {
+            if (m.values[i][j] > m.values[maxRow][maxCol]) {
+                maxRow = i;
+                maxCol = j;
             }
-            for (u = 0; u < 100; ++u) {
-                for (int k = start_rows; k <= end_rows; k++) {
-                    for (int l = start_cols; l <= end_cols; l++) {
-                        min[u] = m.values[k][l];
-                    }
+        }
+    }
+
+    int min[m.nRows * m.nCols];
+    // Находим минимальный элемент в "ёлочке"
+    int minVal = m.values[maxRow][maxCol];
+    for (i = 0; i <= maxRow; i++) {
+        for (j = 0; j < m.nCols; j++) {
+            int difference = abs(maxRow - i);
+            if ((abs(maxCol - j)) <= difference) {
+                if (m.values[i][j] < minVal) {
+                    minVal = m.values[i][j];
                 }
             }
         }
     }
-    for(size_t o = 0; o < u - 1; o++) {
-        for (size_t p = u - 1; p > o; p--) {
-            if (min[p - 1] > min[p])
-                swap(&min[p - 1], &min[p]);
-        }
-    }
-    return min[0];
+
+    return minVal;
 }
 
 //вычисляет расстояние до начала координат
@@ -798,4 +794,39 @@ int getVectorIndexWithMaxAngle(matrix m, int *b) {
     }
 
     return maxIndex;
+}
+
+//Находит скалярное произведение строки и столбца
+long long getScalarProductRowAndCol(matrix m, int i, int j) {
+    long long product = 0;
+    if (i >= 0 && i < m.nRows && j >= 0 && j < m.nCols) {
+        for (int k = 0; k < m.nCols; k++) {
+            product += m.values[i][k] * m.values[k][j];
+        }
+    }
+
+    return product;
+}
+
+//Находит скалярное произведение строки,
+// в которой находится наибольший элемент матрицы, на столбец с наименьшим элементом.
+long long getSpecialScalarProduct(matrix m, int n) {
+    int maxRow = 0;
+    int maxCol = 0;
+    for (int i = 0; i < m.nRows; i++) {
+        for (int j = 0; j < m.nCols; j++) {
+            if (m.values[i][j] > m.values[maxRow][maxCol]) {
+                maxRow = i;
+                maxCol = j;
+            }
+        }
+    }
+    int minCol = 0;
+    for (int j = 0; j < m.nCols; j++) {
+        if (m.values[maxRow][j] < m.values[maxRow][minCol]) {
+            minCol = j;
+        }
+    }
+
+    return getScalarProductRowAndCol(m, maxRow, minCol);
 }
