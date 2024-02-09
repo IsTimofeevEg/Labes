@@ -796,37 +796,40 @@ int getVectorIndexWithMaxAngle(matrix m, int *b) {
     return maxIndex;
 }
 
-//Находит скалярное произведение строки и столбца
+//вычисляет скалярное произведение строки i и столбца j матрицы m
 long long getScalarProductRowAndCol(matrix m, int i, int j) {
-    long long product = 0;
-    if (i >= 0 && i < m.nRows && j >= 0 && j < m.nCols) {
-        for (int k = 0; k < m.nCols; k++) {
-            product += m.values[i][k] * m.values[k][j];
-        }
+    long long result = 0;
+    for (int k = 0; k < m.nCols; k++) {
+        result += (long long)m.values[i][k] * m.values[k][j];
     }
-
-    return product;
+    return result;
 }
 
 //Находит скалярное произведение строки,
 // в которой находится наибольший элемент матрицы, на столбец с наименьшим элементом.
-long long getSpecialScalarProduct(matrix m, int n) {
-    int maxRow = 0;
-    int maxCol = 0;
+long long getSpecialScalarProduct(matrix m) {
+    // Найдем индекс строки с максимальным элементом
+    int maxRowIndex = 0;
+    int maxColIndex = 0;
     for (int i = 0; i < m.nRows; i++) {
         for (int j = 0; j < m.nCols; j++) {
-            if (m.values[i][j] > m.values[maxRow][maxCol]) {
-                maxRow = i;
-                maxCol = j;
+            if (m.values[i][j] > m.values[maxRowIndex][maxColIndex]) {
+                maxRowIndex = i;
+                maxColIndex = j;
             }
         }
     }
-    int minCol = 0;
-    for (int j = 0; j < m.nCols; j++) {
-        if (m.values[maxRow][j] < m.values[maxRow][minCol]) {
-            minCol = j;
+
+    // Найдем индекс столбца с минимальным элементом
+    int minColIndex = 0;
+    int minRowIndex = 0;
+    for (int i = 0; i < m.nRows; i++) {
+        for (int j = 0; j < m.nCols; j++) {
+            if (m.values[i][j] < m.values[minRowIndex][minColIndex]) {
+                minColIndex = j;
+                minRowIndex = i;
+            }
         }
     }
-
-    return getScalarProductRowAndCol(m, maxRow, minCol);
+    return getScalarProductRowAndCol(m, maxRowIndex, minColIndex);
 }

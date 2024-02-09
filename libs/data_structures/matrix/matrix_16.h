@@ -1,120 +1,66 @@
+#ifndef UNTITLED_MATRIX_16_H
+#define UNTITLED_MATRIX_16_H
+
 #include "matrix.h"
-#include <stdio.h>
 
 //Меняет местами строки, в которых находятся максимальный и минимальный элементы.
-void firstTask(matrix *m) {
-    int maxRowIndex = 0;
-    int minRowIndex = 0;
-    int maxVal = m->values[0][0];
-    int minVal = m->values[0][0];
-
-    for (int i = 0; i < m->nRows; i++) {
-        for (int j = 0; j < m->nCols; j++) {
-            if (m->values[i][j] > maxVal) {
-                maxVal = m->values[i][j];
-                maxRowIndex = i;
-            }
-            if (m->values[i][j] < minVal) {
-                minVal = m->values[i][j];
-                minRowIndex = i;
-            }
-        }
-    }
-
-    swapRows(m, maxRowIndex, minRowIndex);
-}
+void firstTask(matrix *m);
 
 //сортирует строки матрицы по неубыванию наибольших элементов строк
-void secondTask(matrix m){
-    for (int i = 0; i < m.nRows; i++) {
-        sortRowsByMaxElement(m);
-    }
-}
+void secondTask(matrix m);
 
 //упорядочивает столбцы матрицы по неубыванию минимальных элементов столбцов
-void thirdTask(matrix a){
-    sortColsByMinElemnt(a, getMin);
-}
+void thirdTask(matrix a);
 
 //Если данная квадратная матрица 𝐴 симметрична, то заменить 𝐴 ее квадратом (𝐴2).
-matrix fourthTask (matrix m) {
-    matrix res = getSquareOfMatrixIfSymmetric(m);
-    return res;
-}
+matrix fourthTask (matrix m);
 
 //Если среди сумм элементов строк матрицы нет равных, то транспонировать матрицу.
-void fifthTask (matrix m) {
-    transposeIfMatrixHasNotEqualSumOfRows(m);
-}
+void fifthTask (matrix m);
 
 //определяет, являются ли они взаимно обратными (𝐴 = 𝐵−1)
-bool sixthTack (matrix m1, matrix m2) {
-    return isMutuallyInverseMatrices(m1, m2);
-}
+bool sixthTack (matrix m1, matrix m2);
 
 //Находит сумму максимальных элементов всех псевдодиагоналей данной матрицы.
-long long seventhTask (matrix m) {
-    long long res = findSumOfMaxesOfPseudoDiagonal(m);
-    return res;
-}
+long long seventhTask (matrix m);
 
 //находит минимальный элемент матрицы в выделенной области.
-int eighthTask (matrix m) {
-    return getMinInArea(m);
-}
+int eighthTask (matrix m);
 
 //сортирует по расстоянию до начала координат
-void ninthTask (matrix m) {
-    sortByDistances(m);
-}
+void ninthTask (matrix m);
 
 // определяет количество классов эквивалентных
-int tenthTask (matrix m) {
-    return countEqClassesByRowsSum(m);
-}
+int tenthTask (matrix m);
 
 //Определяет 𝑘 – количество "особых" элементов матрицы, считая
 //элемент "особым" , если он больше суммы остальных элементов своего столбца.
-int eleventhTask (matrix m) {
-    return getNSpecialElement(m);
-}
+int eleventhTask (matrix m);
 
 // Функция для замены предпоследней строки матрицы
-void twelfthTask (matrix m) {
-    swapPenultimateRow(m);
-}
+void twelfthTask (matrix m);
 
 //Определяет число матриц, строки которых упорядочены по неубыванию элементов
-int thirteenthTask (matrix *ms, int nMatrix) {
-    return countNonDescendingRowsMatrices(ms, nMatrix);
-}
+int thirteenthTask (matrix *ms, int nMatrix);
 
 //Выводит матрицы, имеющие наибольшее
 //число нулевых строк
-void fourteenthTask (matrix *ms, int nMatrix) {
-    printMatrixWithMaxZeroRows(ms, nMatrix);
-}
+void fourteenthTask (matrix *ms, int nMatrix);
 
 //Выводит матрицы с наименьшей нормой.
-void fiveteenthTask (matrix *ms, int nMatrix) {
-    printMatricesWithMinNorm(ms, nMatrix);
-}
+void fiveteenthTask (matrix *ms, int nMatrix);
 
 //Определяет 𝑘 – количество "особых" элементов данной матрицы,
 //считая элемент "особым" если в строке слева от него находятся только
 //меньшие элементы, а справа – только б´oльшие
-int sixteenthTask (matrix m) {
-    return getNSpecialElement2(m);
-}
+int sixteenthTask (matrix m);
 
 //принимает матрицу m и массив целых чисел b,
 // и возвращает индекс вектора из матрицы m,
 // у которого угол между ним и вектором b максимален.
-int seventeenthTask (matrix m, int *b) {
-    return getVectorIndexWithMaxAngle(m, b);
-}
+int seventeenthTask (matrix m, int *b);
 
 //находит минимальный элемент в выделенной области
-int eighteenthTask (matrix m) {
-    return getSpecialScalarProduct(m);
-}
+int eighteenthTask (matrix m);
+
+#endif

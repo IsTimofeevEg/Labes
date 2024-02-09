@@ -201,7 +201,7 @@ long long getScalarProductRowAndCol(matrix m, int i, int j);
 
 //Находит скалярное произведение строки,
 // в которой находится наибольший элемент матрицы, на столбец с наименьшим элементом.
-long long getSpecialScalarProduct(matrix m, int n);
+long long getSpecialScalarProduct(matrix m);
 
 #endif
 
