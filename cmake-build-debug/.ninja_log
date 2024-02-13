@@ -1,12 +1,12 @@
 # ninja log v5
-0	91	7291856408771849	build.ninja	b737fa599af935c0
+0	91	7295160147072486	build.ninja	b737fa599af935c0
 2	88	7288353267419632	CMakeFiles/untitled.dir/libs/data_structures/matrix/matrix_.c.obj	143717dd5e669f8c
-119	185	7291850013623616	libs/data_structures/libdata_structures.a	9afce5f47aa7d5ad
+134	203	7291857667183041	libs/data_structures/libdata_structures.a	9afce5f47aa7d5ad
 37	176	7288348539460699	libs/data_structures/CMakeFiles/data_structures.dir/bitset/bitset.c.obj	f3a825005ad29792
-2	51	7291850012258182	CMakeFiles/untitled.dir/main.c.obj	7b280a1c0d9089ce
+2	134	7291993977504838	CMakeFiles/untitled.dir/main.c.obj	7b280a1c0d9089ce
 214	350	7288348541254700	libs/algorithms/libalgorithms.a	e4a7759f0649e872
 1	140	7288348539111868	libs/algorithms/CMakeFiles/algorithms.dir/array/array.c.obj	e84ffcdb097200c5
-185	264	7291850014391046	untitled.exe	63decf4e4c482170
+141	240	7291993978561305	untitled.exe	63decf4e4c482170
 10	209	7288348539789601	libs/algorithms/CMakeFiles/algorithms.dir/array/unordered_array.c.obj	5312316e15ab0cf0
 24	214	7288348539829473	libs/algorithms/CMakeFiles/algorithms.dir/array/ordered_array.c.obj	108af9be056343b5
 56	182	7288348539490605	libs/data_structures/CMakeFiles/data_structures.dir/bitset/bitset-dm.c.obj	b7c070eed9a615c4
@@ -17,14 +17,4 @@
 2	128	7291848485512753	libs/data_structures/CMakeFiles/data_structures.dir/matrix/matrix.c.obj	73532d845f9766e5
 9	77	7288352485430379	libs/data_structures/CMakeFiles/data_structures.dir/matrix/main.c.obj	bb52bc1b2f00bd42
 8	73	7288353267270096	libs/data_structures/CMakeFiles/data_structures.dir/__/__/matrix.c.obj	cb010a19379bfc0f
-8	118	7291850012925989	libs/data_structures/CMakeFiles/data_structures.dir/matrix/tests_for_lab16.c.obj	8f9013fda752a219
-2	108	7291857666230999	CMakeFiles/untitled.dir/main.c.obj	7b280a1c0d9089ce
 8	127	7291857666240960	libs/data_structures/CMakeFiles/data_structures.dir/matrix/tests_for_lab16.c.obj	8f9013fda752a219
-134	203	7291857667183041	libs/data_structures/libdata_structures.a	9afce5f47aa7d5ad
-203	289	7291857668005337	untitled.exe	63decf4e4c482170
-2	96	7291861960316246	CMakeFiles/untitled.dir/main.c.obj	7b280a1c0d9089ce
-103	182	7291861961163556	untitled.exe	63decf4e4c482170
-1	96	7291862449126088	CMakeFiles/untitled.dir/main.c.obj	7b280a1c0d9089ce
-104	183	7291862449983188	untitled.exe	63decf4e4c482170
-2	97	7291862803686192	CMakeFiles/untitled.dir/main.c.obj	7b280a1c0d9089ce
-101	182	7291862804523388	untitled.exe	63decf4e4c482170
