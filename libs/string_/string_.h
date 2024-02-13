@@ -30,6 +30,7 @@ char* findNonSpaceReverse(char *rbegin, const char *rend);
 //на ленте памяти, начиная с rbegin и заканчивая rend.
 char* findSpaceReverse(char *rbegin, const char *rend);
 
-
+//проверка строк на равенство
+int strcmp(const char *lhs, const char *rhs);
 
 #endif //UNTITLED_STRING__H
