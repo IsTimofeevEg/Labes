@@ -47,4 +47,10 @@ char* copy(const char *beginSource, const char *endSource,
 char* copyIf(char *beginSource, const char *endSource,
              char *beginDestination, int (*f)(int));
 
+// записывает по адресу
+//beginDestination элементы из фрагмента памяти начиная с rbeginSource
+//заканчивая rendSource, удовлетворяющие функции-предикату f.
+char* copyIfReverse(char *rbeginSource, const char *rendSource, char
+*beginDestination, int (*f)(int));
+
 #endif //UNTITLED_STRING__H

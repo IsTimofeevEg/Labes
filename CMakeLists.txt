@@ -5,7 +5,8 @@ set(CMAKE_C_STANDARD 11)
 
 add_executable(untitled main.c
         libs/string_/string_.c
-        libs/string_/string_.h)
+        libs/string_/string_.h
+        libs/string_/tests_for_string.c)
 
 
 add_subdirectory(libs)
