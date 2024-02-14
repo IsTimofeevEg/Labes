@@ -1,5 +1,6 @@
 #include <ctype.h>
 #include <stdio.h>
+#include <assert.h>
 #include "string_.h"
 
 //Сокращает количество пробелов между словами данного предложения до
@@ -190,8 +191,54 @@ void test_for_replace () {
     test_replace_firstWordIsNotInString();
 }
 
+//Определяет, упорядочены ли лексикографически слова данного предложения.
+bool areWordsOrdered(char *string) {
+    WordDescriptor word1;
+    WordDescriptor word2;
+    if (getWord(string, &word1)) {
+        word2 = word1;
+        while (getWord(string, &word1)) {
+            if (areWordsEqual(word1, word2) < 0)
+                return false;
+            word2 = word1;
+            string = word1.end;
+        }
+        return true;
+    } else {
+        return true;
+    }
+}
+
+void test_areWordsOrdered_stringIsEmpty() {
+    char s[] = "";
+    assert(areWordsOrdered(s) == true);
+}
+void test_areWordsOrdered_oneWordInString() {
+    char s[] = "dream";
+    assert(areWordsOrdered(s) == true);
+}
+void test_areWordsOrdered_NotorderedString() {
+    char s[] = "pass op";
+    assert(areWordsOrdered(s) == true);
+}
+void test_areWordsOrdered_TwoWordsEqual() {
+    char s[] = "pass pass";
+    assert(areWordsOrdered(s) == true);
+}
+void test_areWordsOrdered_orderedString() {
+    char s[] = "a ab baaa ca cd";
+    assert(areWordsOrdered(s) == true);
+}
+void test_for_areWordsOrdered() {
+    test_areWordsOrdered_stringIsEmpty();
+    test_areWordsOrdered_oneWordInString();
+    test_areWordsOrdered_NotorderedString();
+    test_areWordsOrdered_TwoWordsEqual();
+    test_areWordsOrdered_orderedString();
+}
+
 int main() {
-    test_for_replace ();
+    test_for_areWordsOrdered();
 
     return 0;
 }
