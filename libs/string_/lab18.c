@@ -300,6 +300,70 @@ void test_for_reverseWordsBag () {
     test_reverseWordsBag3();
 }
 
+//проверяет, является ли заданное слово палиндромом.
+bool isWordPalindrome(char *begin, char *end) {
+    end--;
+    while (end - begin > 0) {
+        if (*begin != *end)
+            return false;
+        begin++;
+        end--;
+    }
+    return true;
+}
+
+// подсчитывает количество палиндромов в строке, разделенной запятыми.
+size_t howManyWordsPalindromes(char *s) {
+    char *endS = getEndOfString(s);
+    char *beginSearch = findNonSpace(s);
+    int countPalindromes = 0;
+    char *commaPos = find(beginSearch, endS, ',');
+    bool lastComma = *commaPos == '\0' && endS - beginSearch != 0;
+    while (*commaPos != '\0' || lastComma) {
+        beginSearch = findNonSpace(beginSearch);
+        countPalindromes += isWordPalindrome(beginSearch, commaPos);
+        beginSearch = commaPos + 1;
+        if (lastComma)
+            break;
+        commaPos = find(beginSearch, endS, ',');
+        lastComma = *commaPos == '\0';
+    }
+    return countPalindromes;
+}
+
+void test_howManyWordsPalindromes_stringIsEmpty() {
+    char s[] = "";
+    assert(howManyWordsPalindromes(s) == 0);
+}
+
+void test_howManyWordsPalindromes_oneWOrdIsPalindrome() {
+    char s[] = "heh";
+    assert(howManyWordsPalindromes(s) == 1);
+}
+
+void test_howManyWordsPalindromes_twoWordsIsPalindrome() {
+    char s[] = "heh,heyeh";
+    assert(howManyWordsPalindromes(s) == 2);
+}
+
+void test_howManyWordsPalindromes_onePallAndOneNot() {
+    char s[] = "heh,hi";
+    assert(howManyWordsPalindromes(s) == 1);
+}
+
+void test_howManyWordsPalindromes_OneSymbol() {
+    char s[] = "a";
+    assert(howManyWordsPalindromes(s) == 1);
+}
+
+void test_for_howManyWordsPalindromes() {
+    test_howManyWordsPalindromes_stringIsEmpty();
+    test_howManyWordsPalindromes_oneWOrdIsPalindrome();
+    test_howManyWordsPalindromes_twoWordsIsPalindrome();
+    test_howManyWordsPalindromes_onePallAndOneNot();
+    test_howManyWordsPalindromes_OneSymbol();
+}
+
 int main() {
 
     test_for_areWordsOrdered();
