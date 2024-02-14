@@ -63,9 +63,45 @@ void test_for_digitStartLetterToEndt() {
     ASSERT_STRING("321JHFaiuds", str2);
 }
 
+//Преобразовывает строку, заменяя каждую цифру соответствующим ей числом
+//пробелов.
+void replacesNumbersWithSpaces(char *s) {
+    int num_alphabet = 48;
+    char _stringBuffer[MAX_STRING_SIZE + 1];
+    char *endSource = getEndOfString(s);
+    char *stringBufferStart = _stringBuffer;
+    char *endOfStringBuffer = copy(s, endSource, stringBufferStart);
+    *endOfStringBuffer = '\0';
+    while (*stringBufferStart != '\0') {
+        if (isalpha(*stringBufferStart)) {
+            *s++ = *stringBufferStart;
+        }
+        else if (isdigit(*stringBufferStart)) {
+            while (*stringBufferStart - num_alphabet > 0) {
+                *s++ = ' ';
+                (*stringBufferStart)--;
+            }
+        }
+        ++stringBufferStart;
+    }
+}
+
+//Тесты для replacesNumbersWithSpaces
+void test_for_replacesNumbersWithSpaces () {
+    char str[MAX_STRING_SIZE] = "aisud2sjal3aiuwehf4a";
+    replacesNumbersWithSpaces(str);
+    char str1[MAX_STRING_SIZE] = "3asqf2jh1jkasd";
+    replacesNumbersWithSpaces(str1);
+    char str2[MAX_STRING_SIZE] = "12345t";
+    replacesNumbersWithSpaces(str2);
+
+    ASSERT_STRING("aisud  sjal   aiuwehf    a", str);
+    ASSERT_STRING("   asqf  jh jkasd", str1);
+    ASSERT_STRING("               t", str2);
+}
 
 int main() {
-    test_for_digitStartLetterToEndt();
+    test_for_replacesNumbersWithSpaces ();
 
 
     return 0;
