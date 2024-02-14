@@ -215,4 +215,3 @@ bool areWordsEqual(WordDescriptor w1, WordDescriptor w2) {
     }
 }
 
-}

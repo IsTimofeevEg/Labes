@@ -94,6 +94,7 @@ char *strcpy(char *dest, const char *src);
 bool areWordsEqual(WordDescriptor w1, WordDescriptor w2);
 
 BagOfWords _bag;
+
 BagOfWords _bag2;
 
 #endif //UNTITLED_STRING__H
