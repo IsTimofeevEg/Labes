@@ -1,11 +1,18 @@
 #ifndef UNTITLED_STRING__H
 #define UNTITLED_STRING__H
 #define ASSERT_STRING(expected, got) assertString(expected, got, __FILE__, __FUNCTION__, __LINE__)
+#define MAX_STRING_SIZE 100
 
+#include <stdbool.h>
 #include <stdlib.h>
 #include <memory.h>
 #include <stdio.h>
 #include <ctype.h>
+
+typedef struct WordDescriptor {
+    char *begin; // позиция начала слова
+    char *end; // позиция первого символа, после последнего символа слова
+} WordDescriptor;
 
 //возвращает количество символов в строке
 size_t strlen_(const char *begin);
@@ -66,5 +73,14 @@ void removeNonLetters(char *s);
 void assertString(const char *expected, char *got,
                   char const *fileName, char const *funcName,
                   int line);
+
+//вернёт значение 0, если слово не было считано, в противном
+//случае будет возвращено значение 1 и в переменную word типа WordDescriptor
+//будут записаны позиции начала слова, и первого символа после конца слова
+int getWord(char *beginSearch, WordDescriptor *word);
+
+//функцию обработки одного слова
+void digitToStart(WordDescriptor word);
+
 
 #endif //UNTITLED_STRING__H
