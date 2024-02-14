@@ -237,6 +237,69 @@ void test_for_areWordsOrdered() {
     test_areWordsOrdered_orderedString();
 }
 
+//копирует символы из заданного диапазона строки в обратном порядке в другую строку.
+// Начиная с указателя rbeginSource и до rendSource,
+// символы копируются в строку, начиная с указателя beginDestination.
+char *copyReverse(char *rbeginSource, const char *rendSource, char
+*beginDestination) {
+    while (rbeginSource != rendSource) {
+        (*beginDestination++) = *rbeginSource--;
+    }
+    return beginDestination;
+}
+
+//Выводит слова данной строки в обратном порядке по одному в строке экрана.
+void getBagOfWords(BagOfWords *bag, char *s) {
+    WordDescriptor word;
+    bag->size = 0;
+    while (getWord(s, &word)) {
+        bag->words[bag->size] = word;
+        bag->size++;
+        s = word.end;
+    }
+}
+
+//разбивает входную строку s на слова, затем переворачивает каждое слово и объединяет их в одну строку.
+void reverseWordsBag(char *s) {
+    char _stringBuffer[MAX_STRING_SIZE + 1];
+    *copy(s, getEndOfString(s), _stringBuffer) = '\0';
+    getBagOfWords(&_bag, _stringBuffer);
+    char *copyS = s;
+    for (int i = 0; i < _bag.size; i++) {
+        copyS = copyReverse(_bag.words[i].end - 1, _bag.words[i].begin -
+                                                   1, copyS);
+        *copyS++ = ' ';
+    }
+    if (copyS != s) {
+        copyS--;
+    }
+    *copyS = '\0';
+}
+
+void test_reverseWordsBag1() {
+    char s[MAX_STRING_SIZE] = "h e y";
+    reverseWordsBag(s);
+    ASSERT_STRING("h e y", s);
+}
+
+void test_reverseWordsBag2() {
+    char s[MAX_STRING_SIZE] = "Artyom";
+    reverseWordsBag(s);
+    ASSERT_STRING("moytrA", s);
+}
+
+void test_reverseWordsBag3() {
+    char s[MAX_STRING_SIZE] = "";
+    reverseWordsBag(s);
+    ASSERT_STRING("", s);
+}
+
+void test_for_reverseWordsBag () {
+    test_reverseWordsBag1();
+    test_reverseWordsBag2();
+    test_reverseWordsBag3();
+}
+
 int main() {
     test_for_areWordsOrdered();
 

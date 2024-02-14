@@ -214,3 +214,5 @@ bool areWordsEqual(WordDescriptor w1, WordDescriptor w2) {
         return false; // Длины слов различаются
     }
 }
+
+}

@@ -16,6 +16,11 @@ typedef struct WordDescriptor {
     char *end; // позиция первого символа, после последнего символа слова
 } WordDescriptor;
 
+typedef struct BagOfWords {
+    WordDescriptor words[MAX_N_WORDS_IN_STRING];
+    size_t size;
+} BagOfWords;
+
 //возвращает количество символов в строке
 size_t strlen_(const char *begin);
 
@@ -87,5 +92,8 @@ void digitToStart(WordDescriptor word);
 char *strcpy(char *dest, const char *src);
 
 bool areWordsEqual(WordDescriptor w1, WordDescriptor w2);
+
+BagOfWords _bag;
+BagOfWords _bag2;
 
 #endif //UNTITLED_STRING__H
