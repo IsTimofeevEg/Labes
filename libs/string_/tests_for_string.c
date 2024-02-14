@@ -98,8 +98,3 @@ void tests(){
     test_findSpaceReverse();
 }
 
-int main(){
-    tests();
-
-    return 0;
-}

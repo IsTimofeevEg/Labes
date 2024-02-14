@@ -351,9 +351,3 @@ void tests () {
     test_getMaxValuePos();
 }
 
-int main () {
-
-    tests();
-
-    return 0;
-}

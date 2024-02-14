@@ -400,9 +400,4 @@ void tests () {
     test_eightteenthTask();
 }
 
-int main () {
 
-    tests();
-
-    return 0;
-}

@@ -1,8 +1,10 @@
 #ifndef UNTITLED_STRING__H
 #define UNTITLED_STRING__H
+#define ASSERT_STRING(expected, got) assertString(expected, got, __FILE__, __FUNCTION__, __LINE__)
 
 #include <stdlib.h>
 #include <memory.h>
+#include <stdio.h>
 #include <ctype.h>
 
 //возвращает количество символов в строке
@@ -52,5 +54,17 @@ char* copyIf(char *beginSource, const char *endSource,
 //заканчивая rendSource, удовлетворяющие функции-предикату f.
 char* copyIfReverse(char *rbeginSource, const char *rendSource, char
 *beginDestination, int (*f)(int));
+
+//находит конечный элемент строки
+char* getEndOfString(char *s);
+
+//удаляет из строки все пробельные символы
+void removeNonLetters(char *s);
+
+// функцию тестирования, которая не ’ложит’ бы наше приложение как assert,
+// но даваёт информацию о том, а где именно произошла ошибка
+void assertString(const char *expected, char *got,
+                  char const *fileName, char const *funcName,
+                  int line);
 
 #endif //UNTITLED_STRING__H
