@@ -182,3 +182,35 @@ bool getWordReverse(char *rbegin, char *rend, WordDescriptor *word) {
     word->begin = rend + 1;
     return true;
 }
+
+char *strcpy(char *dest, const char *src) {
+    char *start = dest; // сохраняем указатель на начало целевой строки
+
+    while (*src != '\0') { // пока не достигнут конец исходной строки
+        *dest = *src; // копируем символ из src в dest
+        dest++; // увеличиваем указатель на целевую строку
+        src++;  // увеличиваем указатель на исходную строку
+    }
+
+    *dest = '\0'; // добавляем завершающий нулевой символ к целевой строке
+
+    return start; // возвращаем указатель на начало целевой строки
+}
+
+bool areWordsEqual(WordDescriptor w1, WordDescriptor w2) {
+    char *ptr1 = w1.begin;
+    char *ptr2 = w2.begin;
+    while (ptr1 <= w1.end && ptr2 <= w2.end) {
+        if (*ptr1 != *ptr2) {
+            return false; // Символы не совпадают, слова различаются
+        }
+        ptr1++;
+        ptr2++;
+    }
+    // Проверяем, что оба указателя указывают на конец слов
+    if (ptr1 > w1.end && ptr2 > w2.end) {
+        return true; // Слова совпадают
+    } else {
+        return false; // Длины слов различаются
+    }
+}

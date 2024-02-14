@@ -100,9 +100,98 @@ void test_for_replacesNumbersWithSpaces () {
     ASSERT_STRING("               t", str2);
 }
 
-int main() {
-    test_for_replacesNumbersWithSpaces ();
+//Заменяет все вхождения слова 𝑤1 на слово 𝑤2.
+void replace(char *source, char *w1, char *w2) {
+    char _stringBuffer[MAX_STRING_SIZE + 1];
+    size_t w1Size = strlen_(w1);
+    size_t w2Size = strlen_(w2);
+    WordDescriptor word1 = {w1, w1 + w1Size};
+    WordDescriptor word2 = {w2, w2 + w2Size};
 
+    char *readPtr, *recPtr;
+
+    if (w1Size >= w2Size) {
+        readPtr = source;
+        recPtr = source;
+    } else {
+        strcpy(_stringBuffer, source);
+        readPtr = _stringBuffer;
+        recPtr = source;
+    }
+
+    while (*readPtr != '\0') {
+        WordDescriptor currentWord = {readPtr, readPtr};
+        while (*readPtr != ' ' && *readPtr != '\0') {
+            readPtr++;
+            currentWord.end = readPtr;
+        }
+
+        if (areWordsEqual(currentWord, word1)) {
+            for (char *ptr = word2.begin; ptr <= word2.end; ptr++) {
+                *recPtr = *ptr;
+                recPtr++;
+            }
+        } else {
+            for (char *ptr = currentWord.begin; ptr <= currentWord.end; ptr++) {
+                *recPtr = *ptr;
+                recPtr++;
+            }
+        }
+
+        if (*readPtr == ' ') {
+            *recPtr = ' ';
+            recPtr++;
+        }
+
+        if (*readPtr != '\0') {
+            readPtr++;
+        }
+    }
+
+    *recPtr = '\0'; // Добавляем завершающий нулевой символ
+}
+
+void test_replace_stringIsEmpty() {
+    char s[MAX_STRING_SIZE] = "";
+    char *word1 = "hey";
+    char *word2 = "yeh";
+    replace(s, word1, word2);
+    ASSERT_STRING("", s);
+}
+
+void test_replace_firstWordLessThenSecond() {
+    char s[MAX_STRING_SIZE] = "aaa bbb ccc aaa";
+    char *word1 = "aaa";
+    char *word2 = "hey";
+    replace(s, word1, word2);
+    ASSERT_STRING("hey bbb ccc hey", s);
+}
+
+void test_replace_firstWordIsGreaterThenSecond() {
+    char s[MAX_STRING_SIZE] = "hello world hello";
+    char *word1 = "hello";
+    char *word2 = "hey";
+    replace(s, word1, word2);
+    ASSERT_STRING("hey world hey", s);
+}
+
+void test_replace_firstWordIsNotInString() {
+    char s[MAX_STRING_SIZE] = "hello world hello";
+    char *word1 = "aaa";
+    char *word2 = "hey";
+    replace(s, word1, word2);
+    ASSERT_STRING("hello world hello", s);
+}
+
+void test_for_replace () {
+    test_replace_stringIsEmpty();
+    test_replace_firstWordLessThenSecond();
+    test_replace_firstWordIsGreaterThenSecond();
+    test_replace_firstWordIsNotInString();
+}
+
+int main() {
+    test_for_replace ();
 
     return 0;
 }

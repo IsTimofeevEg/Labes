@@ -84,5 +84,8 @@ int getWord(char *beginSearch, WordDescriptor *word);
 //функцию обработки одного слова
 void digitToStart(WordDescriptor word);
 
+char *strcpy(char *dest, const char *src);
+
+bool areWordsEqual(WordDescriptor w1, WordDescriptor w2);
 
 #endif //UNTITLED_STRING__H
