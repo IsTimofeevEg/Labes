@@ -93,8 +93,12 @@ char *strcpy(char *dest, const char *src);
 
 bool areWordsEqual(WordDescriptor w1, WordDescriptor w2);
 
-BagOfWords _bag;
+char* strcat_(char* dest, const char* src);
 
-BagOfWords _bag2;
+char* strtok_(char* str, const char* delim);
+
+char* strpbrk_(const char* str, const char* delim);
+
+
 
 #endif //UNTITLED_STRING__H

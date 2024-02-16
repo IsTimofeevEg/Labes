@@ -3,6 +3,10 @@
 #include <assert.h>
 #include "string_.h"
 
+BagOfWords _bag;
+
+BagOfWords _bag2;
+
 //Сокращает количество пробелов между словами данного предложения до
 //одного
 void removeExtraSpaces(char *s) {
@@ -333,7 +337,7 @@ size_t howManyWordsPalindromes(char *s) {
 
 void test_howManyWordsPalindromes_stringIsEmpty() {
     char s[] = "";
-    assert(howManyWordsPalindromes(s) == 0);
+    assert(howManyWordsPalindromes(s) == 0);X
 }
 
 void test_howManyWordsPalindromes_oneWOrdIsPalindrome() {
@@ -364,9 +368,49 @@ void test_for_howManyWordsPalindromes() {
     test_howManyWordsPalindromes_OneSymbol();
 }
 
-int main() {
+//объединяет две строки s1 и s2, разбивая их на слова
+//с помощью функции strtok_ и объединяя слова
+//в результирующую строку result.
+void mergeStrings(char* s1, char* s2, char* result) {
+    char* word1 = strtok_(s1, " ");
+    char* word2 = strtok_(s2, " ");
 
-    test_for_areWordsOrdered();
+    while (word1 != NULL || word2 != NULL) {
+        if (word1 != NULL) {
+            strcat_(result, word1);
+            strcat_(result, " ");
+            word1 = strtok_(NULL, " ");
+        }
+        if (word2 != NULL) {
+            strcat_(result, word2);
+            strcat_(result, " ");
+            word2 = strtok_(NULL, " ");
+        }
+    }
+}
+
+void test_mergeString1() {
+    char s1[] = "Hello how are you";
+    char s2[] = "I am fine thank you";
+    char result[100] = "";
+    mergeStrings(s1, s2, result);
+    ASSERT_STRING("Hello I am fine thank you", result);
+}
+
+void test_mergeString2() {
+    char s1[] = "Thank you my friend";
+    char s2[] = "Hello how are you";
+    char result[100] = "";
+    mergeStrings(s1, s2, result);
+    ASSERT_STRING("Thank Hello how are you", result);
+}
+
+void test_for_mergeString () {
+    test_mergeString1();
+    test_mergeString2();
+}
+
+int main() {
 
     return 0;
 }
