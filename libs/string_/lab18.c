@@ -886,6 +886,38 @@ void test_lastWordInFirstStringInSecondString(){
     ASSERT_STRING("ha", str2);
 }
 
+bool hasDuplicateWords(char* sentence) {
+    char* words[100]; // массив для хранения слов
+    int wordCount = 0;
+
+    // Инициализируем массив слов
+    char* word = strtok_(sentence, " ");
+    while (word != NULL) {
+        words[wordCount] = word;
+        wordCount++;
+        word = strtok_(NULL, " ");
+    }
+
+    // Проверяем наличие одинаковых слов
+    for (int i = 0; i < wordCount; i++) {
+        for (int j = i + 1; j < wordCount; j++) {
+            if (strcmp(words[i], words[j]) == 0) {
+                return true; // Найдено одинаковое слово
+            }
+        }
+    }
+
+    return false; // Одинаковых слов не найдено
+}
+
+void test_hasDuplicateWords(){
+    char str1[] = "my friend Hello my";
+    assert(hasDuplicateWords(str1) == true);
+
+    char str2[] = "my friend Hello";
+    assert(hasDuplicateWords(str1) == false);
+}
+
 int main() {
 
     return 0;

@@ -50,7 +50,7 @@ char* findNonSpaceReverse(char *rbegin, const char *rend);
 char* findSpaceReverse(char *rbegin, const char *rend);
 
 //проверка строк на равенство
-int strcmp_(const char *lhs, const char *rhs);
+int strcmp(const char *lhs, const char *rhs);
 
 //записывает по адресу beginDestination
 //фрагмент памяти, начиная с адреса beginSource до endSource.
