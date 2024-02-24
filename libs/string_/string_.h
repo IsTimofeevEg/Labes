@@ -116,4 +116,6 @@ void strcpy_(char *dest, const char *src);
 
 int strncmp_(const char *s1, const char *s2, size_t n);
 
+char *strrchr_(const char *str, int c);
+
 #endif //UNTITLED_STRING__H

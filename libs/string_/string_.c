@@ -347,3 +347,14 @@ int strncmp_(const char *s1, const char *s2, size_t n) {
     }
     return 0;
 }
+
+char *strrchr_(const char *str, int c) {
+    char *last = NULL;
+    while (*str != '\0') {
+        if (*str == c) {
+            last = (char *)str;
+        }
+        str++;
+    }
+    return last;
+}
