@@ -4,6 +4,8 @@
 #define MAX_STRING_SIZE 100
 #define MAX_N_WORDS_IN_STRING 100
 #define MAX_WORD_SIZE 20
+#define ALPHABET_SIZE 26
+
 
 #include <stdbool.h>
 #include <stdlib.h>
@@ -30,7 +32,7 @@ size_t strlen_(const char *begin);
 char* find(char *begin, char *end, int ch);
 
 //возвращает указатель на первый
-//символ, отличный от пробельных46, расположенный на ленте памяти,
+//символ, отличный от пробельных, расположенный на ленте памяти,
 // начиная с begin и заканчивая ноль-символом
 char* findNonSpace(char *begin);
 
@@ -99,6 +101,17 @@ char* strtok_(char* str, const char* delim);
 
 char* strpbrk_(const char* str, const char* delim);
 
+char *strncpy_(char *destination, const char *source, size_t num);
 
+char *strstr_(const char *haystack, const char *needle);
+
+// Функция для определения длины строки
+size_t strlen_custom(const char *str);
+
+// Функция для конкатенации строк
+void strcat_custom(char *dest, const char *src);
+
+// Функция для копирования строки
+void strcpy_(char *dest, const char *src);
 
 #endif //UNTITLED_STRING__H

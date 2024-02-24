@@ -273,3 +273,71 @@ char* strcat_(char* dest, const char* src) {
 
     return dest;
 }
+
+char *strncpy_(char *destination, const char *source, size_t num) {
+    char *start = destination;
+
+    while (num && (*destination++ = *source++)) {
+        num--;
+    }
+
+    if (num) {
+        while (--num) {
+            *destination++ = '\0';
+        }
+    }
+
+    return start;
+}
+
+char *strstr_(const char *haystack, const char *needle) {
+    if (*needle == '\0') {
+        return (char *)haystack;  // Пустая подстрока всегда найдена в любой строке
+    }
+
+    while (*haystack) {
+        const char *h = haystack;
+        const char *n = needle;
+
+        while (*h && *n && (*h == *n)) {
+            h++;
+            n++;
+        }
+
+        if (*n == '\0') {
+            return (char *)haystack;  // Найдено вхождение подстроки
+        }
+
+        haystack++;
+    }
+
+    return NULL;  // Подстрока не найдена
+}
+
+// Функция для определения длины строки
+size_t strlen_custom(const char *str) {
+    size_t len = 0;
+    while (*str != '\0') {
+        ++len;
+        ++str;
+    }
+    return len;
+}
+
+// Функция для копирования строки
+void strcpy_(char *dest, const char *src) {
+    while (*src) {
+        *dest = *src;
+        dest++;
+        src++;
+    }
+    *dest = '\0';
+}
+
+    // Функция для конкатенации строк
+    void strcat_custom(char *dest, const char *src) {
+    while (*dest != '\0') {
+        ++dest;
+    }
+    strcpy_custom(dest, src);
+}
