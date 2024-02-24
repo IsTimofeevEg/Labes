@@ -730,12 +730,13 @@ void reverseWords(char *str) {
 void test_reverseWords () {
     char p[MAX_STRING_SIZE] = "Hello world! This is a test.";
     reverseWords(p);
-    assert(strcmp(p, ".test a is This !world Hello") == 0);
+    ASSERT_STRING(".test a is This !world Hello", p);
 
     char c[MAX_STRING_SIZE] = ".test a is This !world Hello";
     reverseWords(c);
-    assert(strcmp(c, "Hello world! This is a test.") == 0);
+    ASSERT_STRING("Hello world! This is a test.", c);
 }
+
 void printWordBeforeFirstWordWithA(char *s) {
     char *word = NULL;
     char *token = strtok_(s, " ");
@@ -815,8 +816,77 @@ void test_getWordBeforeFirstWordWithA() {
     assert(getWordBeforeFirstWordWithA(s4, &word) == NOT_FOUND_A_WORD_WITH_A);
 }
 
+void wordDescriptorToString(WordDescriptor word, char *destination) {
+    int length = word.end - word.begin;
+    strncpy_(destination, word.begin, length);
+    destination[length] = '\0';
+}
+
+BagOfWords createBagOfWordsFromString(char *s) {
+    BagOfWords bag;
+    bag.size = 0;
+
+    char *wordBegin = s;
+    for (; *s; ++s) {
+        if (isspace(*s)) {
+            if (s > wordBegin) {
+                bag.words[bag.size].begin = wordBegin;
+                bag.words[bag.size].end = s;
+                ++bag.size;
+            }
+            wordBegin = s + 1;
+        }
+    }
+
+    if (s > wordBegin) {
+        bag.words[bag.size].begin = wordBegin;
+        bag.words[bag.size].end = s;
+        ++bag.size;
+    }
+
+    return bag;
+}
+
+int isWordInBagOfWords(WordDescriptor word, BagOfWords bag) {
+    for (size_t i = 0; i < bag.size; ++i) {
+        if (strncmp_(word.begin, bag.words[i].begin, word.end - word.begin) == 0) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+WordDescriptor lastWordInFirstStringInSecondString(char *s1, char *s2) {
+    BagOfWords bag = createBagOfWordsFromString(s2);
+    WordDescriptor lastWord = {NULL, NULL};
+
+    BagOfWords wordsInS1 = createBagOfWordsFromString(s1);
+    for (size_t i = 0; i < wordsInS1.size; ++i) {
+        if (isWordInBagOfWords(wordsInS1.words[i], bag)) {
+            lastWord = wordsInS1.words[i];
+        }
+    }
+
+    return lastWord;
+}
+
+void test_lastWordInFirstStringInSecondString(){
+    char s1_1[] = "Hi ha he";
+    char s2_1[] = "Hi he";
+    WordDescriptor word1 = lastWordInFirstStringInSecondString(s1_1, s2_1);
+    char str1[MAX_WORD_SIZE];
+    wordDescriptorToString(word1, str1);
+    ASSERT_STRING("he", str1);
+
+    char s1_2[] = "Hi ha he";
+    char s2_2[] = "Hi ha";
+    WordDescriptor word2 = lastWordInFirstStringInSecondString(s1_2, s2_2);
+    char str2[MAX_WORD_SIZE];
+    wordDescriptorToString(word2, str2);
+    ASSERT_STRING("ha", str2);
+}
+
 int main() {
-    test_checkWordInString();
-    test_for_append3();
+
     return 0;
 }

@@ -334,10 +334,16 @@ void strcpy_(char *dest, const char *src) {
     *dest = '\0';
 }
 
-    // Функция для конкатенации строк
-    void strcat_custom(char *dest, const char *src) {
-    while (*dest != '\0') {
-        ++dest;
+int strncmp_(const char *s1, const char *s2, size_t n) {
+    while (n--) {
+        if (*s1 != *s2) {
+            return (unsigned char)*s1 - (unsigned char)*s2;
+        }
+        if (*s1 == '\0') {
+            return 0;
+        }
+        s1++;
+        s2++;
     }
-    strcpy_custom(dest, src);
+    return 0;
 }
