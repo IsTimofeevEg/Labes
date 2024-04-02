@@ -134,3 +134,42 @@ int main3() {
 
     return 0;
 }
+
+int main4() {
+    // Открываем файл для чтения
+    FILE *inputFile = fopen("C:/Users/User/Desktop/lab_4.txt", "r");
+    if (inputFile == NULL) {
+        printf("File opening error\n");
+        return 1;
+    }
+    // Открываем файл для записи
+    FILE *outputFile = fopen("C:/Users/User/Desktop/lab1.txt", "w");
+    if (outputFile == NULL) {
+        printf("File opening error\n");
+        fclose(inputFile);
+        return 1;
+    }
+
+    char word[100], sequence[20];
+
+    printf("Enter a sequence of characters: ");
+    scanf("%s", sequence);
+
+    // Считываем каждое слово из входного файла
+    while (fscanf(inputFile, "%s", word) != EOF) {
+        // Проверяем содержит ли слово заданную последовательность символов
+        if (strstr(word, sequence) != NULL) {
+            // Записываем слово в выходной файл
+            fprintf(outputFile, "%s\n", word);
+        }
+    }
+
+    printf("Words containing a sequence of characters are saved\n");
+
+    fclose(inputFile);
+    fclose(outputFile);
+
+    copyFileContent("C:/Users/User/Desktop/lab1.txt", "C:/Users/User/Desktop/lab_4.txt");
+
+    return 0;
+}
