@@ -657,7 +657,7 @@ void test_hasDuplicateWords(){
     assert(hasDuplicateWords(str1) == true);
 
     char str2[] = "my friend Hello";
-    assert(hasDuplicateWords(str1) == false);
+    assert(hasDuplicateWords(str2) == false);
 }
 
 int compareWords(char *word1, char *word2) {

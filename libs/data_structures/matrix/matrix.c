@@ -26,14 +26,22 @@ matrix *getMemArrayOfMatrices(int nMatrices, int nRows, int nCols) {
 
 //освобождает память, выделенную под хранение матрицы m.
 void freeMemMatrix(matrix *m) {
-    free (m->values);
+    for (int i = 0; i < m->nRows; i++) {
+        free(m->values[i]);
+    }
+    free(m->values);
+    m->values = NULL;
+    m->nRows = 0;
+    m->nCols = 0;
 }
 
-//освобождает память, выделенную под хранение массива ms из nMatrices матриц.
+//освобождает память, выделенную под хранение массива ms из
+//nMatrices матриц.
 void freeMemMatrices(matrix *ms, int nMatrices) {
-    for(int i = 0; i < nMatrices; i++) {
-        free (ms[i].values);
+    for (int i = 0; i < nMatrices; i++) {
+        freeMemMatrix(&ms[i]);
     }
+    free(ms);
 }
 
 //ввод матрицы m.
@@ -744,7 +752,7 @@ int getNSpecialElement2(matrix m) {
             }
         }
     }
-    return special_elements - 2;
+    return special_elements;
 }
 
 //принимает два массива целых чисел a и b и их длину n, и возвращает скалярное произведение этих векторов.

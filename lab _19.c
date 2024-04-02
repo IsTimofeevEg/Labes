@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <string.h>
+#include <math.h>
 
 void copyFileContent(const char* sourceFile, const char* destinationFile) {
     FILE *source, *destination;
@@ -8,14 +9,14 @@ void copyFileContent(const char* sourceFile, const char* destinationFile) {
     // Открываем исходный файл для чтения
     source = fopen(sourceFile, "r");
     if (source == NULL) {
-        printf("Не удалось открыть исходный файл для чтения.\n");
+        printf("The source file could not be opened for reading\n");
         return;
     }
 
     // Открываем файл назначения для записи
     destination = fopen(destinationFile, "w");
     if (destination == NULL) {
-        printf("Не удалось открыть файл назначения для записи.\n");
+        printf("The destination file could not be opened for writing\n");
         fclose(source);
         return;
     }
@@ -29,19 +30,19 @@ void copyFileContent(const char* sourceFile, const char* destinationFile) {
     fclose(source);
     fclose(destination);
 
-    printf("Содержимое файла %s успешно скопировано в файл %s.\n", sourceFile, destinationFile);
+    printf("The contents of the %s file have been successfully copied to the %s file\n", sourceFile, destinationFile);
 }
 
-int main() {
+int main1() {
     FILE *file = fopen("C:/Users/User/Desktop/lab.txt", "r");
     if (file == NULL) {
-        printf("Ошибка открытия файла.\n");
+        printf("File opening error\n");
         return 1;
     }
 
-    FILE *outputFile = fopen("C:/Users/User/Desktop/lab1.txt", "w");
-    if (outputFile == NULL) {
-        printf("Ошибка создания файла.\n");
+    FILE *output_file = fopen("C:/Users/User/Desktop/lab1.txt", "w");
+    if (output_file == NULL) {
+        printf("File creation error\n");
         return 1;
     }
 
@@ -54,19 +55,20 @@ int main() {
                 fscanf(file, "%d", &matrix[i][j]);
             }
         }
-        fprintf(outputFile, "%d ", n);
+        fprintf(output_file, "%d ", n);
         for (int j = 0; j < n; j++) {
             for (int i = 0; i < n; i++) {
-                fprintf(outputFile, "%d ", matrix[i][j]);
+                fprintf(output_file, "%d ", matrix[i][j]);
             }
         }
-        fprintf(outputFile, "\n");
+        fprintf(output_file, "\n");
     }
 
-    copyFileContent("C:/Users/User/Desktop/lab1.txt", "C:/Users/User/Desktop/lab.txt");
-
     fclose(file);
-    fclose(outputFile);
+    fclose(output_file);
+
+    copyFileContent("C:/Users/tanya/CLionProjects/GG/library/algoritms/1.txt", "C:/Users/tanya/CLionProjects/GG/library/algoritms/19_1.txt");
 
     return 0;
 }
+
