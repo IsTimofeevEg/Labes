@@ -67,8 +67,31 @@ int main1() {
     fclose(file);
     fclose(output_file);
 
-    copyFileContent("C:/Users/tanya/CLionProjects/GG/library/algoritms/1.txt", "C:/Users/tanya/CLionProjects/GG/library/algoritms/19_1.txt");
+    copyFileContent("C:/Users/User/Desktop/lab1.txt", "C:/Users/User/Desktop/lab.txt");
 
     return 0;
 }
 
+int main2() {
+    FILE *input_file = fopen("C:/Users/User/Desktop/lab_2.txt", "r");
+    FILE *output_file = fopen("C:/Users/User/Desktop/lab1.txt", "w");
+    double number;
+
+    if (input_file == NULL || output_file == NULL) {
+        printf("Error opening files.\n");
+        return 1;
+    }
+
+    while (fscanf(input_file, "%lf", &number) == 1) {
+        fprintf(output_file, "%.2f\n", number);
+    }
+
+    printf("Conversion completed successfully.\n");
+
+    fclose(input_file);
+    fclose(output_file);
+
+    copyFileContent("C:/Users/User/Desktop/lab1.txt", "C:/Users/User/Desktop/lab_2.txt");
+
+    return 0;
+}
