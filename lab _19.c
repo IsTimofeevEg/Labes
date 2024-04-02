@@ -173,3 +173,51 @@ int main4() {
 
     return 0;
 }
+
+int main5() {
+    // Открываем файл для чтения
+    FILE *inputFile = fopen("C:/Users/User/Desktop/lab_5.txt", "r");
+    if (inputFile == NULL) {
+        printf("File opening error\n");
+        return 1;
+    }
+
+    // Открываем файл для записи
+    FILE *outputFile = fopen("C:/Users/User/Desktop/lab1.txt", "w");
+    if (outputFile == NULL) {
+        printf("File opening error\n");
+        fclose(inputFile);
+        return 1;
+    }
+
+    char line[1000], longest_word[100];
+    int maxLen = 0;
+
+    // Считываем каждую строку из входного файла
+    while (fgets(line, sizeof(line), inputFile)) {
+        char *token = strtok(line, " ");
+        while (token != NULL) {
+            if (strlen(token) > maxLen) {
+                maxLen = strlen(token);
+                strcpy(longest_word, token);
+            }
+            token = strtok(NULL, " ");
+        }
+
+        // Записываем самое длинное слово в выходной файл
+        fprintf(outputFile, "%s", longest_word);
+
+        // Сбрасываем значения для следующей строки
+        maxLen = 0;
+        longest_word[0] = '\0';
+    }
+
+    printf("The longest words from each line are saved\n");
+
+    fclose(inputFile);
+    fclose(outputFile);
+
+    copyFileContent("C:/Users/User/Desktop/lab1.txt", "C:/Users/User/Desktop/lab_5.txt");
+
+    return 0;
+}
