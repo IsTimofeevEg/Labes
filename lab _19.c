@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "libs/data_structures/matrix/matrix.h"
 
 #define MAX_SIZE 100
 #define MAX_FILE_SIZE 1024
@@ -341,6 +342,50 @@ void test_for_task_6() {
 
     ASSERT_TXT(str1, str2);
 }
+
+void task_7(const char *filename) {
+    FILE *file = fopen(filename, "rb");
+    if (file == NULL) {
+        printf("Error opening file\n");
+        exit(-3);
+    }
+
+    FILE *result_file = fopen("C:/Users/User/Desktop/lab1.txt", "wb");
+    if (result_file == NULL) {
+        printf("Error creating resulting file.\n");
+        fclose(file);
+        exit(-3);
+    }
+
+    int positive_number;
+    while (fread(&positive_number, sizeof(positive_number), 1, file)) {
+        if (positive_number > 0) {
+            fwrite(&positive_number, sizeof(positive_number), 1, result_file);
+        }
+    }
+
+    fclose(file);
+    file = fopen(filename, "rb");
+
+    int negative_number;
+    while (fread(&negative_number, sizeof(negative_number), 1, file)) {
+        if (negative_number < 0) {
+            fwrite(&negative_number, sizeof(negative_number), 1, result_file);
+        }
+    }
+
+    fclose(file);
+    fclose(result_file);
+}
+
+void test_for_task_7() {
+    const char *str1 = "C:/Users/User/Desktop/lab_7.txt";
+    const char *str2 = "C:/Users/User/Desktop/lab_test_7.txt";
+    task_7(str1);
+
+    ASSERT_TXT(str1, str2);
+}
+
 
 int main () {
     test_for_task_5();
