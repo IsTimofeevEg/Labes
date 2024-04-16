@@ -1,10 +1,24 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <assert.h>
-#include <math.h>
 
+#define MAX_SIZE 100
 #define MAX_FILE_SIZE 1024
+
+typedef struct {
+    int power;
+    int coefficient;
+} Polynomial;
+
+int pow_(int base, int exp) {
+    int result = 1;
+    while (exp > 0) {
+        result *= base;
+        exp--;
+    }
+
+    return result;
+}
 
 void copyFileContent(const char* sourceFile, const char* destinationFile) {
     FILE *source, *destination;
@@ -293,6 +307,39 @@ void test_for_task_5() {
     if (ans == 0) {
         ASSERT_TXT(str1, str2);
     }
+}
+
+void task_6(const char *filename, int x) {
+    FILE *file = fopen(filename, "rb");
+    if (file == NULL) {
+        printf("Error opening file\n");
+        exit(-3);
+    }
+
+    FILE *temp_file = fopen("C:/Users/User/Desktop/lab1.txt", "wb");
+    if (!temp_file) {
+        printf("Error creating resulting file.\n");
+        fclose(file);
+        exit(-3);
+    }
+
+    Polynomial poly;
+    while (fread(&poly, sizeof(Polynomial), 1, file)) {
+        if (poly.coefficient * pow_(x, poly.power) != (x * x)) {
+            fwrite(&poly, sizeof(Polynomial), 1, temp_file);
+        }
+    }
+
+    fclose(file);
+    fclose(temp_file);
+}
+
+void test_for_task_6() {
+    const char *str1 = "C:/Users/User/Desktop/lab_6.txt";
+    const char *str2 = "C:/Users/User/Desktop/lab_test_6.txt";
+    task_6(str1, 2);
+
+    ASSERT_TXT(str1, str2);
 }
 
 int main () {
