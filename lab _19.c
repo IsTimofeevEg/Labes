@@ -386,6 +386,42 @@ void test_for_task_7() {
     ASSERT_TXT(str1, str2);
 }
 
+void task_8(const char *filename) {
+    FILE *file = fopen(filename, "rb");
+    if (file == NULL) {
+        printf("Error opening file\n");
+        exit(-3);
+    }
+
+    FILE *result_file = fopen("C:/Users/User/Desktop/lab1.txt", "wb");
+    if (result_file == NULL) {
+        printf("Error creating resulting file.\n");
+        fclose(file);
+        exit(-3);
+    }
+
+    matrix m;
+    while (fread(&m, sizeof(matrix), 1, file)) {
+        if (!isSymmetricMatrix(&m)) {
+            transposeMatrix(&m);
+            fwrite(&m, sizeof(matrix), 1, result_file);
+        } else {
+            fwrite(&m, sizeof(matrix), 1, result_file);
+        }
+    }
+
+    fclose(file);
+    fclose(result_file);
+}
+
+void test_for_task_8() {
+    const char *str1 = "C:/Users/User/Desktop/lab_8.txt";
+    const char *str2 = "C:/Users/User/Desktop/lab_test_8.txt";
+    task_8(str1);
+
+    ASSERT_TXT(str1, str2);
+}
+
 
 int main () {
     test_for_task_5();
