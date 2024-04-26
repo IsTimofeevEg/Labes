@@ -2,7 +2,14 @@
 #include <pthread.h>
 #include <assert.h>
 #include <stdio.h>
+#include <string.h>
 #include "libs/data_structures/matrix/matrix.h"
+#include <stdbool.h>
+
+typedef struct domain{
+    size_t visits;
+    char name[200];
+} domain;
 
 typedef struct {
     int row;
@@ -228,6 +235,75 @@ void test_for_task_3(){
                                                      15, 25, 35
                                                    }, 3, 3);
     assert(areTwoMatricesEqual(&got, &expected));
+}
+
+size_t searchDomainInResults(const domain results[], size_t size, char *s){ for
+            (size_t ind = 0; ind < size; ind++){
+        if (strcmp(results[ind].name, s) == 0){
+            return ind;
+        }
+    }
+    return size;
+}
+
+void handlerDotPrtNotNull(domain *array, size_t ind, char *dotPtr, domain
+results[], size_t *sizeResult){
+    strcpy(array[ind].name, dotPtr + 1);
+    size_t pos = searchDomainInResults(results, *sizeResult,
+                                       array[ind].name);
+    if (pos == *sizeResult){
+        results[*sizeResult] = array[ind];
+        *sizeResult += 1;
+    } else{
+        results[pos].visits += array[ind].visits;
+    }
+}
+
+bool searchNumFromArray(const size_t array[], size_t length, size_t num){ for
+            (size_t ind = 0; ind < length; ind++){
+        if (num == array[ind]){
+            return true;
+        }
+    }
+    return false;
+}
+
+void outputResultDomains(domain *results, size_t size){
+    for (size_t ind = 0; ind < size; ind++){
+        printf("%ld %s\n", results[ind].visits, results[ind].name); }
+}
+
+void task_4(domain array[], size_t size){
+    size_t closeIndexes[size];
+    size_t countClose = 0;
+    domain results[200];
+    size_t sizeResult = 0;
+    for (size_t ind = 0; ind < size; ind++){
+        results[sizeResult++] = array[ind];
+    }
+    while(countClose != size){
+        for (size_t ind = 0; ind < size; ind++){
+            if (!searchNumFromArray(closeIndexes, countClose, ind)){ char *dotPtr =
+                        strchr(array[ind].name, '.');
+                if (dotPtr != NULL){
+                    handlerDotPrtNotNull(array, ind, dotPtr,
+                                         results, &sizeResult);
+                } else{
+                    closeIndexes[countClose++] = ind;
+                }
+            }
+        }
+    }
+    outputResultDomains(results, sizeResult);
+}
+
+void test_for_task_4(){
+    size_t size = 4;
+    domain array[4] = {{900, "google.mail.com"}, {50,
+                             "yahoo.com"},
+                       {1, "intel.mail.com"},
+                       {5, "wiki.org"}};
+    task_4(array, size);
 }
 
 int main() {
